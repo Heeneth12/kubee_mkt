@@ -56,7 +56,7 @@ export default function FeaturesAlternating() {
               <p className="text-sm text-slate-500 mb-6 leading-relaxed">{s.description}</p>
               <ol className="space-y-3">
                 {s.steps.map((step, i) => (
-                  <li key={i} className="flex gap-3 items-start">
+                  <li key={step} className="flex gap-3 items-start">
                     <span className="w-6 h-6 rounded-full bg-brand-blue-dark text-white text-xs font-bold flex items-center justify-center flex-shrink-0 mt-0.5">
                       {i + 1}
                     </span>

@@ -16,6 +16,7 @@ export default function FooterCTA() {
         >
           <input
             type="email"
+            name="email"
             placeholder="Enter your work email"
             required
             className="flex-1 px-4 py-3 rounded-xl text-sm text-slate-800 placeholder:text-slate-400 outline-none focus:ring-2 focus:ring-brand-yellow"

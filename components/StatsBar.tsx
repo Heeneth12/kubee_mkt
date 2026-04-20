@@ -9,7 +9,7 @@ export default function StatsBar() {
   return (
     <section className="bg-white border-b border-slate-100">
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="grid grid-cols-2 md:grid-cols-4 divide-x divide-slate-100">
+        <div className="grid grid-cols-2 md:grid-cols-4 divide-x divide-y md:divide-y-0 divide-slate-100">
           {stats.map((s) => (
             <div key={s.label} className="py-8 px-4 text-center">
               <div className="text-3xl font-extrabold text-brand-blue mb-1">{s.value}</div>

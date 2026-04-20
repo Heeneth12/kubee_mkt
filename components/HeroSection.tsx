@@ -5,7 +5,7 @@ export default function HeroSection() {
     <section className="bg-gradient-to-br from-brand-blue-dark to-brand-blue relative overflow-hidden">
       {/* Geometric accents */}
       <div className="absolute top-8 right-24 w-14 h-14 bg-brand-yellow rounded-xl rotate-12 opacity-90 hidden sm:block" />
-      <div className="absolute bottom-24 left-6 w-10 h-10 bg-blue-300 rounded-lg -rotate-8 opacity-50 hidden sm:block" />
+      <div className="absolute bottom-24 left-6 w-10 h-10 bg-blue-300 rounded-lg -rotate-6 opacity-50 hidden sm:block" />
       <div className="absolute top-1/3 right-8 w-6 h-6 bg-blue-200 rounded opacity-30 hidden lg:block" />
 
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 pt-20 pb-0 relative z-10">
