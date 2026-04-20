@@ -30,16 +30,16 @@ export default function HeroSection() {
         {/* CTAs */}
         <div className="flex flex-col sm:flex-row gap-3 justify-center mb-14">
           <Link
-            href="#"
+            href="/signup"
             className="bg-brand-yellow text-brand-blue-dark font-bold px-7 py-3 rounded-xl text-sm hover:opacity-90 transition-opacity text-center"
           >
             Start for Free →
           </Link>
           <Link
-            href="#"
+            href="#features"
             className="bg-white/15 text-white border border-white/30 px-7 py-3 rounded-xl text-sm hover:bg-white/20 transition-colors text-center"
           >
-            ▶ Watch Demo
+            ▶ See Features
           </Link>
         </div>
 

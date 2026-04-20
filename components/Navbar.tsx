@@ -41,13 +41,13 @@ export default function Navbar() {
           {/* Desktop CTA */}
           <div className="hidden md:flex items-center gap-3">
             <Link
-              href="#"
+              href="/login"
               className="text-sm text-white border border-white/30 px-4 py-2 rounded-lg hover:bg-white/10 transition-colors"
             >
               Sign in
             </Link>
             <Link
-              href="#"
+              href="/signup"
               className="text-sm font-bold bg-brand-yellow text-brand-blue-dark px-4 py-2 rounded-lg hover:opacity-90 transition-opacity"
             >
               Start Free
@@ -87,10 +87,10 @@ export default function Navbar() {
             </Link>
           ))}
           <div className="flex gap-3 mt-4">
-            <Link href="#" className="flex-1 text-center text-sm text-white border border-white/30 px-4 py-2 rounded-lg">
+            <Link href="/login" className="flex-1 text-center text-sm text-white border border-white/30 px-4 py-2 rounded-lg">
               Sign in
             </Link>
-            <Link href="#" className="flex-1 text-center text-sm font-bold bg-brand-yellow text-brand-blue-dark px-4 py-2 rounded-lg">
+            <Link href="/signup" className="flex-1 text-center text-sm font-bold bg-brand-yellow text-brand-blue-dark px-4 py-2 rounded-lg">
               Start Free
             </Link>
           </div>

@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Link from "next/link";
 
 export const metadata: Metadata = {
   title: "Privacy Policy",
@@ -8,7 +9,7 @@ export const metadata: Metadata = {
 export default function PrivacyPage() {
   return (
     <>
-      <section className="bg-gradient-to-br from-brand-blue-dark to-brand-blue py-12 text-center px-4">
+      <section className="bg-gradient-to-br from-brand-blue-dark to-brand-blue py-16 text-center px-4">
         <h1 className="text-3xl sm:text-4xl font-extrabold text-white mb-2">Privacy Policy</h1>
         <p className="text-sm text-white/70">Last updated: 20 April 2026</p>
       </section>
@@ -19,7 +20,7 @@ export default function PrivacyPage() {
           <p>We collect: (a) <strong>Account data</strong> — name, email, company name, GSTIN; (b) <strong>Usage data</strong> — pages visited, features used, session duration; (c) <strong>Business data</strong> — inventory records, purchase orders, and other content you upload; (d) <strong>Payment data</strong> — processed by Razorpay; we do not store card details.</p>
 
           <h2>2. How We Use Your Data</h2>
-          <p>We use your data to: provide and improve the Service; send product updates and billing notifications; comply with legal obligations under the Indian IT Act 2000 and GST regulations; analyse usage patterns in aggregate to improve the product.</p>
+          <p>We use your data to: provide and improve the Service; send product updates and billing notifications; comply with legal obligations under the Indian IT Act 2000, GST regulations, and where applicable the EU General Data Protection Regulation (GDPR); analyse usage patterns in aggregate to improve the product.</p>
 
           <h2>3. Third-Party Services</h2>
           <p>We use: <strong>Razorpay</strong> for payment processing; <strong>AWS Mumbai</strong> for cloud hosting; <strong>Google Analytics</strong> for anonymous usage analytics. Each third party has its own privacy policy. We do not sell your data to any third party.</p>
@@ -38,6 +39,14 @@ export default function PrivacyPage() {
 
           <h2>8. Contact</h2>
           <p>Data Protection Officer: <a href="mailto:privacy@kubee.in">privacy@kubee.in</a></p>
+        </div>
+      </section>
+
+      <section className="py-8 px-4 bg-slate-50 border-t border-slate-100">
+        <div className="max-w-3xl mx-auto text-sm text-slate-500 flex flex-wrap gap-4">
+          <span className="font-medium text-slate-700">Related policies:</span>
+          <Link href="/terms" className="hover:text-brand-blue transition-colors">Terms of Service</Link>
+          <Link href="/cookie-policy" className="hover:text-brand-blue transition-colors">Cookie Policy</Link>
         </div>
       </section>
     </>

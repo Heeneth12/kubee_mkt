@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Link from "next/link";
 
 export const metadata: Metadata = {
   title: "Cookie Policy",
@@ -8,7 +9,7 @@ export const metadata: Metadata = {
 export default function CookiePolicyPage() {
   return (
     <>
-      <section className="bg-gradient-to-br from-brand-blue-dark to-brand-blue py-12 text-center px-4">
+      <section className="bg-gradient-to-br from-brand-blue-dark to-brand-blue py-16 text-center px-4">
         <h1 className="text-3xl sm:text-4xl font-extrabold text-white mb-2">Cookie Policy</h1>
         <p className="text-sm text-white/70">Last updated: 20 April 2026</p>
       </section>
@@ -48,6 +49,14 @@ export default function CookiePolicyPage() {
 
           <h2>Contact</h2>
           <p>Questions about cookies? Email <a href="mailto:privacy@kubee.in">privacy@kubee.in</a>.</p>
+        </div>
+      </section>
+
+      <section className="py-8 px-4 bg-slate-50 border-t border-slate-100">
+        <div className="max-w-3xl mx-auto text-sm text-slate-500 flex flex-wrap gap-4">
+          <span className="font-medium text-slate-700">Related policies:</span>
+          <Link href="/terms" className="hover:text-brand-blue transition-colors">Terms of Service</Link>
+          <Link href="/privacy" className="hover:text-brand-blue transition-colors">Privacy Policy</Link>
         </div>
       </section>
     </>

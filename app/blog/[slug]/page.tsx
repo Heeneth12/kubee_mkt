@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import Link from "next/link";
 import { marked } from "marked";
+import DOMPurify from "isomorphic-dompurify";
 import { blogPosts } from "@/data/blog-posts";
 
 type Props = { params: Promise<{ slug: string }> };
@@ -56,7 +57,7 @@ export default async function BlogPostPage({ params }: Props) {
           </Link>
           <article
             className="prose prose-slate prose-sm sm:prose-base max-w-none"
-            dangerouslySetInnerHTML={{ __html: marked(post.content) as string }}
+            dangerouslySetInnerHTML={{ __html: DOMPurify.sanitize(marked(post.content) as string) }}
           />
         </div>
       </section>
