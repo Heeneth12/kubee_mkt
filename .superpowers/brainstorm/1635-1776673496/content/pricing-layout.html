@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Kubee — Pricing Page Design</title>
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; background: #f1f5f9; }
+  .page-title { text-align: center; padding: 32px 24px 16px; background: #fff; border-bottom: 1px solid #e2e8f0; }
+  .page-title h1 { font-size: 20px; font-weight: 700; color: #1e293b; }
+  .page-title p { font-size: 13px; color: #64748b; margin-top: 4px; }
+  .browser { max-width: 960px; margin: 32px auto 48px; background: #fff; border-radius: 12px; overflow: hidden; box-shadow: 0 4px 32px rgba(0,0,0,0.12); }
+  .browser-bar { background: #e2e8f0; padding: 10px 16px; display: flex; align-items: center; gap: 8px; }
+  .dot { width: 10px; height: 10px; border-radius: 50%; }
+  .dot.red { background: #ef4444; } .dot.yellow { background: #f59e0b; } .dot.green { background: #22c55e; }
+  .url-bar { flex: 1; background: #fff; border-radius: 4px; padding: 4px 10px; font-size: 11px; color: #64748b; margin-left: 8px; }
+
+  .s-nav { background: #1a3bbd; padding: 0 40px; display: flex; align-items: center; justify-content: space-between; height: 56px; }
+  .logo-icon { width: 28px; height: 28px; background: #f5c518; border-radius: 6px; display: flex; align-items: center; justify-content: center; font-weight: 800; font-size: 13px; color: #1a3bbd; }
+  .logo-wrap { display: flex; align-items: center; gap: 8px; }
+  .logo-text { font-weight: 700; font-size: 16px; color: #fff; }
+  .links { display: flex; gap: 28px; }
+  .links span { font-size: 13px; color: rgba(255,255,255,0.8); }
+  .nav-cta { display: flex; gap: 8px; }
+  .btn-ghost { padding: 6px 14px; font-size: 12px; color: #fff; border: 1px solid rgba(255,255,255,0.4); border-radius: 6px; }
+  .btn-yellow { padding: 6px 14px; font-size: 12px; background: #f5c518; color: #1a3bbd; border-radius: 6px; font-weight: 700; }
+
+  .s-pricing-hero { background: linear-gradient(160deg, #1a3bbd 0%, #2d55e8 100%); padding: 48px 40px 56px; text-align: center; }
+  .s-pricing-hero h1 { font-size: 32px; font-weight: 800; color: #fff; margin-bottom: 12px; }
+  .s-pricing-hero p { font-size: 14px; color: rgba(255,255,255,0.8); max-width: 400px; margin: 0 auto 24px; }
+  .toggle { display: inline-flex; background: rgba(255,255,255,0.15); border-radius: 8px; padding: 3px; gap: 2px; }
+  .toggle span { font-size: 12px; color: rgba(255,255,255,0.7); padding: 6px 16px; border-radius: 6px; }
+  .toggle span.active { background: #fff; color: #1a3bbd; font-weight: 700; }
+  .toggle .save { font-size: 10px; background: #22c55e; color: #fff; border-radius: 20px; padding: 2px 7px; margin-left: 4px; }
+
+  .s-plans { background: #fff; padding: 0 40px 48px; margin-top: -28px; }
+  .plans-grid { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 16px; }
+
+  .plan-card { border: 1.5px solid #e2e8f0; border-radius: 12px; padding: 24px 20px; position: relative; }
+  .plan-card.popular { border-color: #2d55e8; box-shadow: 0 4px 24px rgba(45,85,232,0.15); }
+  .popular-badge { position: absolute; top: -12px; left: 50%; transform: translateX(-50%); background: #2d55e8; color: #fff; font-size: 10px; font-weight: 700; padding: 3px 14px; border-radius: 20px; white-space: nowrap; }
+  .plan-name { font-size: 13px; font-weight: 700; color: #64748b; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 8px; }
+  .plan-price { font-size: 36px; font-weight: 800; color: #1e293b; line-height: 1; }
+  .plan-price sup { font-size: 18px; color: #64748b; font-weight: 400; }
+  .plan-price span { font-size: 13px; color: #64748b; font-weight: 400; }
+  .plan-desc { font-size: 12px; color: #64748b; margin: 8px 0 20px; line-height: 1.5; }
+  .plan-btn { width: 100%; padding: 10px; border-radius: 8px; font-size: 13px; font-weight: 700; text-align: center; margin-bottom: 20px; }
+  .plan-btn.outline { border: 1.5px solid #2d55e8; color: #2d55e8; }
+  .plan-btn.filled { background: #2d55e8; color: #fff; }
+  .plan-btn.dark { background: #0f1f3d; color: #fff; }
+  .plan-features { display: flex; flex-direction: column; gap: 8px; }
+  .feat-item { display: flex; gap: 8px; align-items: flex-start; }
+  .check { width: 16px; height: 16px; background: #dcfce7; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 9px; color: #16a34a; flex-shrink: 0; margin-top: 1px; }
+  .cross { width: 16px; height: 16px; background: #f1f5f9; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 9px; color: #94a3b8; flex-shrink: 0; margin-top: 1px; }
+  .feat-item p { font-size: 11px; color: #475569; }
+  .feat-item p.dim { color: #94a3b8; }
+
+  .s-faq { background: #f8faff; padding: 48px 40px; }
+  .s-faq h2 { font-size: 24px; font-weight: 800; color: #1e293b; text-align: center; margin-bottom: 28px; }
+  .faq-list { max-width: 600px; margin: 0 auto; display: flex; flex-direction: column; gap: 12px; }
+  .faq-item { background: #fff; border: 1px solid #e2e8f0; border-radius: 8px; padding: 16px 20px; }
+  .faq-q { font-size: 13px; font-weight: 600; color: #1e293b; display: flex; justify-content: space-between; }
+  .faq-a { font-size: 12px; color: #64748b; margin-top: 8px; line-height: 1.6; }
+
+  .s-footer { background: #0f1f3d; padding: 32px 40px; display: flex; justify-content: space-between; align-items: flex-start; }
+  .footer-logo { font-weight: 800; color: #fff; font-size: 16px; margin-bottom: 8px; }
+  .footer-copy { font-size: 10px; color: rgba(255,255,255,0.4); }
+  .footer-links { display: flex; gap: 40px; }
+  .footer-col h4 { font-size: 11px; color: rgba(255,255,255,0.6); font-weight: 600; margin-bottom: 10px; text-transform: uppercase; letter-spacing: 0.5px; }
+  .footer-col a { display: block; font-size: 11px; color: rgba(255,255,255,0.5); margin-bottom: 6px; }
+</style>
+</head>
+<body>
+
+<div class="page-title">
+  <h1>Kubee.in — Pricing Page Design</h1>
+  <p>Free / Pro / Enterprise — with monthly/annual toggle and FAQ section</p>
+</div>
+
+<div class="browser">
+  <div class="browser-bar">
+    <div class="dot red"></div><div class="dot yellow"></div><div class="dot green"></div>
+    <div class="url-bar">kubee.in/pricing</div>
+  </div>
+
+  <div class="s-nav">
+    <div class="logo-wrap"><div class="logo-icon">K</div><div class="logo-text">Kubee</div></div>
+    <div class="links"><span>Home</span><span style="color:#fff;font-weight:700;border-bottom:2px solid #f5c518;padding-bottom:4px;">Pricing</span><span>Blog</span><span>Contact</span></div>
+    <div class="nav-cta"><div class="btn-ghost">Sign in</div><div class="btn-yellow">Start Free</div></div>
+  </div>
+
+  <div class="s-pricing-hero">
+    <h1>Simple, Transparent Pricing</h1>
+    <p>Start free. Upgrade when your business needs more. No hidden charges.</p>
+    <div class="toggle">
+      <span class="active">Monthly</span>
+      <span>Annual <span class="save">Save 20%</span></span>
+    </div>
+  </div>
+
+  <div class="s-plans">
+    <div class="plans-grid">
+
+      <div class="plan-card">
+        <div class="plan-name">Free</div>
+        <div class="plan-price">₹0<span>/month</span></div>
+        <div class="plan-desc">Perfect for solo operators and tiny shops getting started.</div>
+        <div class="plan-btn outline">Get Started Free</div>
+        <div class="plan-features">
+          <div class="feat-item"><div class="check">✓</div><p>Up to 200 SKUs</p></div>
+          <div class="feat-item"><div class="check">✓</div><p>1 warehouse / location</p></div>
+          <div class="feat-item"><div class="check">✓</div><p>Basic stock tracking</p></div>
+          <div class="feat-item"><div class="check">✓</div><p>5 purchase orders/month</p></div>
+          <div class="feat-item"><div class="cross">✗</div><p class="dim">AI forecasting</p></div>
+          <div class="feat-item"><div class="cross">✗</div><p class="dim">Auto reordering</p></div>
+          <div class="feat-item"><div class="cross">✗</div><p class="dim">Multi-user access</p></div>
+          <div class="feat-item"><div class="cross">✗</div><p class="dim">Advanced reports</p></div>
+        </div>
+      </div>
+
+      <div class="plan-card popular">
+        <div class="popular-badge">⭐ Most Popular</div>
+        <div class="plan-name">Pro</div>
+        <div class="plan-price"><sup>₹</sup>1,499<span>/month</span></div>
+        <div class="plan-desc">For growing SMBs that need full inventory + order control.</div>
+        <div class="plan-btn filled">Start 14-day Free Trial</div>
+        <div class="plan-features">
+          <div class="feat-item"><div class="check">✓</div><p>Unlimited SKUs</p></div>
+          <div class="feat-item"><div class="check">✓</div><p>Up to 5 warehouses</p></div>
+          <div class="feat-item"><div class="check">✓</div><p>Real-time stock ledger</p></div>
+          <div class="feat-item"><div class="check">✓</div><p>Unlimited POs, GRNs, Invoices</p></div>
+          <div class="feat-item"><div class="check">✓</div><p>AI demand forecasting</p></div>
+          <div class="feat-item"><div class="check">✓</div><p>Auto reorder triggers</p></div>
+          <div class="feat-item"><div class="check">✓</div><p>5 user seats</p></div>
+          <div class="feat-item"><div class="check">✓</div><p>Excel & PDF reports</p></div>
+        </div>
+      </div>
+
+      <div class="plan-card">
+        <div class="plan-name">Enterprise</div>
+        <div class="plan-price" style="font-size:26px;padding-top:5px;">Custom</div>
+        <div class="plan-desc">For large businesses needing custom workflows, integrations, and SLAs.</div>
+        <div class="plan-btn dark">Contact Sales</div>
+        <div class="plan-features">
+          <div class="feat-item"><div class="check">✓</div><p>Everything in Pro</p></div>
+          <div class="feat-item"><div class="check">✓</div><p>Unlimited warehouses</p></div>
+          <div class="feat-item"><div class="check">✓</div><p>Unlimited user seats</p></div>
+          <div class="feat-item"><div class="check">✓</div><p>Custom approval workflows</p></div>
+          <div class="feat-item"><div class="check">✓</div><p>API & ERP integrations</p></div>
+          <div class="feat-item"><div class="check">✓</div><p>Dedicated account manager</p></div>
+          <div class="feat-item"><div class="check">✓</div><p>Priority 24/7 support</p></div>
+          <div class="feat-item"><div class="check">✓</div><p>Custom SLA & onboarding</p></div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <div class="s-faq">
+    <h2>Frequently Asked Questions</h2>
+    <div class="faq-list">
+      <div class="faq-item"><div class="faq-q">Is the Free plan really free forever? <span>+</span></div><div class="faq-a">Yes. No credit card required. The Free plan stays free with no expiry — upgrade only when you need more.</div></div>
+      <div class="faq-item"><div class="faq-q">Can I switch plans anytime? <span>+</span></div><div class="faq-a">Yes. Upgrade or downgrade at any time. Billing is prorated monthly.</div></div>
+      <div class="faq-item"><div class="faq-q">Do you support GST billing? <span>+</span></div><div class="faq-a">Yes. All invoices are GST-compliant. You'll receive a proper tax invoice for every payment.</div></div>
+      <div class="faq-item"><div class="faq-q">What payment methods do you accept? <span>+</span></div><div class="faq-a">UPI, Net Banking, Credit/Debit cards, and Razorpay. All major Indian payment methods supported.</div></div>
+    </div>
+  </div>
+
+  <div class="s-footer">
+    <div><div class="footer-logo">Kubee</div><div class="footer-copy">© 2026 Kubee Technologies.<br>All rights reserved.</div></div>
+    <div class="footer-links">
+      <div class="footer-col"><h4>Product</h4><a href="#">Features</a><a href="#">Pricing</a><a href="#">Integrations</a></div>
+      <div class="footer-col"><h4>Company</h4><a href="#">About</a><a href="#">Blog</a><a href="#">Contact</a></div>
+      <div class="footer-col"><h4>Legal</h4><a href="#">Privacy Policy</a><a href="#">Terms of Service</a><a href="#">Cookie Policy</a></div>
+    </div>
+  </div>
+</div>
+
+</body>
+</html>

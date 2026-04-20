@@ -1,0 +1,24 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(bash *)",
+      "Bash(npm install *)",
+      "Bash(npx tsc *)",
+      "Bash(git add *)",
+      "Bash(git commit *)",
+      "Bash(git -C \"C:/Users/heene/Desktop/kubee.in/kubee_mkt\" log --oneline -3)",
+      "Bash(git -C \"C:/Users/heene/Desktop/kubee.in/kubee_mkt\" diff 603d2a8..HEAD)",
+      "Bash(git -C /c/Users/heene/Desktop/kubee.in/kubee_mkt add data/blog-posts.ts data/pricing.ts)",
+      "Bash(git -C /c/Users/heene/Desktop/kubee.in/kubee_mkt commit -m ' *)",
+      "Bash(npm run *)",
+      "Bash(git *)",
+      "Bash(npx next *)",
+      "Bash(npx eslint *)",
+      "Bash(node -e \"const {marked} = require\\('marked'\\); console.log\\(typeof marked\\)\")",
+      "Bash(node -e \"const {marked} = require\\('marked'\\); const html = marked\\('## test\\\\n<script>alert\\(1\\)</script>'\\); console.log\\(html\\)\")"
+    ]
+  },
+  "enabledPlugins": {
+    "frontend-design@claude-plugins-official": true
+  }
+}

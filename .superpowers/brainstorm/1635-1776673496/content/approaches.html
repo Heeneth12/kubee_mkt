@@ -1,0 +1,44 @@
+<h2>3 Approaches for the Kubee Marketing Site</h2>
+<p class="subtitle">Each handles routing, structure, and conversion differently. Pick the one that fits best.</p>
+
+<div class="options">
+
+  <div class="option" data-choice="a" onclick="toggleSelect(this)">
+    <div class="letter">A</div>
+    <div class="content">
+      <h3>App Router + Static Pages (Recommended)</h3>
+      <p>Next.js 16 App Router with each page as a static route: <code>/</code>, <code>/pricing</code>, <code>/blog</code>, <code>/contact</code>, <code>/about</code>, <code>/terms</code>, <code>/privacy</code>. Blog uses <code>/blog/[slug]</code> dynamic route with MDX or JSON content. All pages statically generated (SSG) for best SEO. Shared layout with navbar + footer. Tailwind CSS v4 throughout.</p>
+      <div class="pros-cons" style="margin-top:12px">
+        <div class="pros"><h4>Pros</h4><ul><li>Best SEO — fully static HTML</li><li>Fast page loads</li><li>Clean URL structure</li><li>Easy to extend</li></ul></div>
+        <div class="cons"><h4>Cons</h4><ul><li>Blog needs rebuild on new posts (unless using ISR)</li></ul></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="option" data-choice="b" onclick="toggleSelect(this)">
+    <div class="letter">B</div>
+    <div class="content">
+      <h3>Single-Page with Scroll Sections</h3>
+      <p>One long homepage with all sections (hero, features, pricing, testimonials, contact). Separate pages only for legal (terms, privacy). Blog is an external link (e.g., Medium or Notion). Simpler to build and maintain.</p>
+      <div class="pros-cons" style="margin-top:12px">
+        <div class="pros"><h4>Pros</h4><ul><li>Faster to build</li><li>Smooth scroll UX</li><li>Less maintenance</li></ul></div>
+        <div class="cons"><h4>Cons</h4><ul><li>Weaker SEO (fewer pages to index)</li><li>Can't blog natively</li><li>Hard to scale</li></ul></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="option" data-choice="c" onclick="toggleSelect(this)">
+    <div class="letter">C</div>
+    <div class="content">
+      <h3>App Router + CMS-backed Blog (Contentlayer/MDX)</h3>
+      <p>Same as Option A but the blog is powered by local MDX files with Contentlayer for type-safe content. Blog posts live in <code>/content/blog/*.mdx</code>. Ideal if you plan to publish content regularly for SEO. More setup upfront but very powerful long-term.</p>
+      <div class="pros-cons" style="margin-top:12px">
+        <div class="pros"><h4>Pros</h4><ul><li>Best long-term SEO content engine</li><li>Type-safe, versioned blog content</li><li>No external CMS needed</li></ul></div>
+        <div class="cons"><h4>Cons</h4><ul><li>More setup</li><li>Non-technical editors need Git</li></ul></div>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<p class="subtitle" style="margin-top:24px">⭐ My recommendation: <strong>Option A</strong> — it's the right balance for an SEO-first marketing site. Blog can start simple (JSON/hardcoded posts) and evolve to MDX later. Fast to build, great Google performance.</p>
