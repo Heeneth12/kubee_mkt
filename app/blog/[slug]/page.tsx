@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import Link from "next/link";
+import { marked } from "marked";
 import { blogPosts } from "@/data/blog-posts";
 
 type Props = { params: Promise<{ slug: string }> };
@@ -12,7 +13,7 @@ export async function generateStaticParams() {
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { slug } = await params;
   const post = blogPosts.find((p) => p.slug === slug);
-  if (!post) return {};
+  if (!post) notFound();
   return {
     title: post.title,
     description: post.excerpt,
@@ -55,7 +56,7 @@ export default async function BlogPostPage({ params }: Props) {
           </Link>
           <article
             className="prose prose-slate prose-sm sm:prose-base max-w-none"
-            dangerouslySetInnerHTML={{ __html: post.content.replace(/\n/g, "<br/>") }}
+            dangerouslySetInnerHTML={{ __html: marked(post.content) as string }}
           />
         </div>
       </section>

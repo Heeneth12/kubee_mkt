@@ -51,6 +51,7 @@ export default function ContactForm() {
       {rows ? (
         <textarea
           id={id}
+          name={id}
           rows={rows}
           value={form[id]}
           onChange={(e) => setForm({ ...form, [id]: e.target.value })}
@@ -59,6 +60,7 @@ export default function ContactForm() {
       ) : (
         <input
           id={id}
+          name={id}
           type={type}
           value={form[id]}
           onChange={(e) => setForm({ ...form, [id]: e.target.value })}
