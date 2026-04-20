@@ -39,6 +39,7 @@ export default function FAQSection() {
             <div key={faq.q} className="bg-white rounded-xl border border-slate-100 overflow-hidden">
               <button
                 onClick={() => setOpen(open === i ? null : i)}
+                aria-expanded={open === i}
                 className="w-full flex justify-between items-center px-5 py-4 text-left"
               >
                 <span className="font-semibold text-sm text-slate-800">{faq.q}</span>

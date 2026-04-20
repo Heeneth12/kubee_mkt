@@ -49,7 +49,7 @@ export default function PricingCard({ tier, annual }: Props) {
         )}
       </div>
 
-      {annual && tier.monthlyPrice && tier.annualPrice && tier.monthlyPrice > 0 && (
+      {annual && tier.monthlyPrice != null && tier.annualPrice != null && tier.monthlyPrice > 0 && (
         <p className="text-xs text-green-600 mb-2">
           Save ₹{((tier.monthlyPrice - tier.annualPrice) * 12).toLocaleString("en-IN")}/year
         </p>
@@ -58,8 +58,8 @@ export default function PricingCard({ tier, annual }: Props) {
       <p className="text-sm text-slate-500 mb-6 leading-relaxed">{tier.description}</p>
 
       <Link
-        href={tier.ctaStyle === "dark" ? "/contact" : "#"}
-        className={`w-full text-center font-bold text-sm py-3 rounded-xl transition-all mb-6 ${ctaClasses[tier.ctaStyle]}`}
+        href={tier.ctaStyle === "dark" ? "/contact" : "/signup"}
+        className={`block w-full text-center font-bold text-sm py-3 rounded-xl transition-all mb-6 ${ctaClasses[tier.ctaStyle]}`}
       >
         {tier.cta}
       </Link>

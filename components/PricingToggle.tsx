@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import PricingCard from "./PricingCard";
+import PricingCard from "@/components/PricingCard";
 import { pricingTiers } from "@/data/pricing";
 
 export default function PricingToggle() {
@@ -11,9 +11,10 @@ export default function PricingToggle() {
     <div>
       {/* Toggle */}
       <div className="flex justify-center mb-10">
-        <div className="inline-flex bg-white/15 rounded-xl p-1 gap-1">
+        <div role="group" aria-label="Billing period" className="inline-flex bg-white/15 rounded-xl p-1 gap-1">
           <button
             onClick={() => setAnnual(false)}
+            aria-pressed={!annual}
             className={`text-sm px-5 py-2 rounded-lg transition-all font-medium ${
               !annual ? "bg-white text-brand-blue-dark font-bold" : "text-white/70 hover:text-white"
             }`}
@@ -22,6 +23,7 @@ export default function PricingToggle() {
           </button>
           <button
             onClick={() => setAnnual(true)}
+            aria-pressed={annual}
             className={`text-sm px-5 py-2 rounded-lg transition-all font-medium flex items-center gap-2 ${
               annual ? "bg-white text-brand-blue-dark font-bold" : "text-white/70 hover:text-white"
             }`}
