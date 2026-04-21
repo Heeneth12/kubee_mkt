@@ -2,8 +2,8 @@
 @plugin "@tailwindcss/typography";
 
 @theme inline {
-  --color-brand-blue: #2d55e8;
-  --color-brand-blue-dark: #1a3bbd;
+  --color-brand-blue: #1b4acc; 
+  --color-brand-blue-dark: #090f4c;
   --color-brand-navy: #0f1f3d;
   --color-brand-yellow: #f5c518;
   --color-brand-light: #f8faff;
