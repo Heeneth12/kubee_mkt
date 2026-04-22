@@ -4,6 +4,7 @@ import StatsBar from "@/components/StatsBar";
 import FeaturesGrid from "@/components/FeaturesGrid";
 import FeaturesAlternating from "@/components/FeaturesAlternating";
 import FooterCTA from "@/components/FooterCTA";
+import Integrations from "@/components/Integrations";
 
 export const metadata: Metadata = {
   title: "Kubee — Inventory Management for Indian Businesses",
@@ -15,9 +16,8 @@ export default function HomePage() {
   return (
     <>
       <HeroSection />
-      <StatsBar />
-      <FeaturesGrid />
       <FeaturesAlternating />
+      <Integrations />
       <FooterCTA />
     </>
   );

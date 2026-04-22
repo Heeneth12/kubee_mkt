@@ -13,7 +13,7 @@ function BackgroundShapes() {
       <motion.div
         animate={{ y: [0, -15, 0], x: [0, 5, 0] }}
         transition={{ duration: 6, repeat: Infinity, ease: "easeInOut" }}
-        className="absolute top-[25%] left-[2%] w-16 h-24 border border-white/20 transform -skew-y-12"
+        className="absolute top-[25%] left-[2%] w-16 h-24 border border-white/50 transform -skew-y-12"
       />
 
       {/* Top Left Light Blue Block */}
@@ -122,10 +122,10 @@ function DashboardMockup() {
     >
       
       {/* Outer Glass Layer: Frosted, spread out, catching the background light */}
-      <div className="absolute -left-16 -right-16 -top-16 bottom-0 bg-linear-to-br from-white/10 to-white/0 rounded-t-3xl backdrop-blur-md border border-white/20 z-0" />
+      <div className="absolute -left-16 -right-16 -top-16 bottom-0 bg-linear-to-br from-white/10 to-white/0 rounded-t-xl backdrop-blur-md z-0" />
       
       {/* Inner Glass Layer: Slightly more opaque, tighter blur, strong edge reflection */}
-      <div className="absolute -left-8 -right-8 -top-8 bottom-0 bg-linear-to-b from-white/20 to-white/5 rounded-t-3xl backdrop-blur-lg border border-white/30 z-0" />
+      <div className="absolute -left-8 -right-8 -top-8 bottom-0 bg-linear-to-b from-white/20 to-white/5 rounded-t-2xl backdrop-blur-lg z-0" />
 
       {/* Main White Window */}
       <div className="relative z-10 bg-white rounded-t-xl overflow-visible text-slate-800">
@@ -143,7 +143,7 @@ function DashboardMockup() {
             <svg viewBox="0 0 24 24" fill="none" className="w-6 h-6 text-[#2548E6]">
               <path d="M12 2L2 22H6.5L12 11L17.5 22H22L12 2Z" fill="currentColor" />
             </svg>
-            <span className="font-bold text-lg tracking-tight">Avenue</span>
+            <span className="font-bold text-lg tracking-tight">Kubee</span>
           </div>
           
           <div className="flex gap-8 text-sm font-semibold text-slate-500">
@@ -327,7 +327,7 @@ function DashboardMockup() {
 ────────────────────────────────────────────── */
 export default function HeroSection() {
   return (
-    <section className="relative min-h-[140vh] bg-white font-sans">
+    <section className="relative bg-white font-sans">
       
       <div className="absolute top-0 left-0 right-0  md:h-180 bg-brand-blue" />
 
@@ -348,7 +348,7 @@ export default function HeroSection() {
       </div>
 
       {/* Mockup Container bridging Blue and White backgrounds */}
-      <div className="relative z-10 px-4 pb-20 mt-10">
+      <div className="relative z-10 px-4 pb-4 mt-10">
         <DashboardMockup/>
       </div>
       

@@ -35,12 +35,9 @@ export default function Footer() {
           {/* Brand */}
           <div>
             <div className="flex items-center gap-2 mb-3">
-              <div className="w-8 h-8 bg-brand-yellow rounded-lg flex items-center justify-center font-extrabold text-sm text-brand-blue-dark">
-                K
-              </div>
               <span className="font-bold text-lg">Kubee</span>
             </div>
-            <p className="text-sm text-white/50 max-w-[200px] leading-relaxed">
+            <p className="text-sm text-white/50 max-w-50 leading-relaxed">
               Modern inventory management built for Indian businesses.
             </p>
           </div>
@@ -70,7 +67,7 @@ export default function Footer() {
           <p className="text-xs text-white/30">
             © {new Date().getFullYear()} Kubee Technologies. All rights reserved.
           </p>
-          <p className="text-xs text-white/30">Made with ❤️ in India 🇮🇳</p>
+          <p className="text-xs text-white">Made with ❤️ in India 🇮🇳</p>
         </div>
       </div>
     </footer>
