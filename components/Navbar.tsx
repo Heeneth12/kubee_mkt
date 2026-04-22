@@ -1,11 +1,14 @@
 "use client";
 
+import { label } from "framer-motion/client";
 import Link from "next/link";
 import { useState } from "react";
 
 const navLinks = [
   { label: "Home", href: "/" },
   { label: "Pricing", href: "/pricing" },
+  { label: "Guide", href: "/guides" },
+  { label: 'Solutions', href: '/solutions' },
   { label: "Blog", href: "/blog" },
   { label: "Contact", href: "/contact" },
 ];

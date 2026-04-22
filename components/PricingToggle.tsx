@@ -9,24 +9,31 @@ export default function PricingToggle() {
 
   return (
     <div>
-      {/* Toggle */}
+      {/* Toggle Container */}
       <div className="flex justify-center mb-10">
-        <div role="group" aria-label="Billing period" className="inline-flex bg-white/15 rounded-xl p-1 gap-1">
+        <div
+          role="group"
+          aria-label="Billing period"
+          className="inline-flex bg-slate-100 border border-slate-100 rounded-xl gap-1 shadow-sm"
+        >
           <button
             onClick={() => setAnnual(false)}
             aria-pressed={!annual}
-            className={`text-sm px-5 py-2 rounded-lg transition-all font-medium ${
-              !annual ? "bg-white text-brand-blue-dark font-bold" : "text-white/70 hover:text-white"
-            }`}
+            className={`text-sm px-5 py-2 rounded-lg transition-all font-medium ${!annual
+              ? "bg-white text-[#0B1536] font-bold shadow-sm border border-slate-200/50"
+              : "text-slate-500 hover:text-slate-800"
+              }`}
           >
             Monthly
           </button>
+
           <button
             onClick={() => setAnnual(true)}
             aria-pressed={annual}
-            className={`text-sm px-5 py-2 rounded-lg transition-all font-medium flex items-center gap-2 ${
-              annual ? "bg-white text-brand-blue-dark font-bold" : "text-white/70 hover:text-white"
-            }`}
+            className={`text-sm px-5 py-2 rounded-lg transition-all font-medium flex items-center gap-2 ${annual
+              ? "bg-white text-[#0B1536] font-bold shadow-sm border border-slate-200/50"
+              : "text-slate-500 hover:text-slate-800"
+              }`}
           >
             Annual
             <span className="bg-green-500 text-white text-[10px] font-bold px-2 py-0.5 rounded-full">

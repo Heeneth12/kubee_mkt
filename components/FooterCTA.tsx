@@ -45,23 +45,22 @@ export default function TestimonialsSection() {
   const progressPercentage = ((currentIndex + 1) / TESTIMONIALS.length) * 100;
 
   return (
-    <section className="relative w-full bg-brand-blue py-24 overflow-hidden font-sans">
+    <section className="relative w-full bg-brand-blue py-16 overflow-hidden font-sans">
       <div className="max-w-4xl mx-auto px-6">
-        
+
         {/* Heading */}
-        <h2 className="text-4xl md:text-5xl font-bold text-white text-center mb-16 leading-tight tracking-tight">
-          What people say <br /> about Kubee
+        <h2 className="text-2xl md:text-4xl font-bold text-white text-center mb-16 leading-tight tracking-tight">
+          What people say about Kubee
         </h2>
 
         {/* Carousel Container */}
         <div className="relative max-w-3xl mx-auto">
-          
+
           {/* Background Layer (Slightly wider blue card behind white card) */}
-          <div className="absolute top-4 bottom-4 -left-6 -right-6 bg-[#4162ED] rounded-xl z-0" />
 
           {/* Geometric Accent: Left Light Blue Square */}
           <div className="absolute -left-10 bottom-6 w-14 h-14 bg-[#93C5FD] rotate-[-15deg] z-20 shadow-sm" />
-          
+
           {/* Geometric Accent: Right Yellow Rectangle */}
           <div className="absolute -right-3 top-10 w-8 h-12 bg-[#FDE047] rotate-[10deg] z-20 shadow-sm" />
 
@@ -101,9 +100,9 @@ export default function TestimonialsSection() {
         </div>
 
         {/* Controls (Arrows & Progress Bar) */}
-        <div className="flex items-center justify-center gap-6 mt-16 max-w-[400px] mx-auto">
+        <div className="flex items-center justify-center gap-6 mt-8 max-w-[400px] mx-auto">
           {/* Left Arrow */}
-          <button 
+          <button
             onClick={handlePrev}
             className="text-white/70 hover:text-white transition-colors p-2"
             aria-label="Previous testimonial"
@@ -117,7 +116,7 @@ export default function TestimonialsSection() {
           {/* Progress Bar Track */}
           <div className="flex-1 h-[1px] bg-white/20 relative overflow-hidden rounded-full">
             {/* Progress Indicator */}
-            <motion.div 
+            <motion.div
               className="absolute left-0 top-0 bottom-0 bg-white"
               initial={{ width: 0 }}
               animate={{ width: `${progressPercentage}%` }}
@@ -126,7 +125,7 @@ export default function TestimonialsSection() {
           </div>
 
           {/* Right Arrow */}
-          <button 
+          <button
             onClick={handleNext}
             className="text-white/70 hover:text-white transition-colors p-2"
             aria-label="Next testimonial"
