@@ -1,24 +1,24 @@
 "use client";
 
-import { label } from "framer-motion/client";
 import Link from "next/link";
 import { useState } from "react";
+import { usePathname } from "next/navigation";
 
 const navLinks = [
-  { label: "Home", href: "/" },
-  { label: "Pricing", href: "/pricing" },
+  { label: "Features", href: "/features" },
+  { label: "Solutions", href: "/solutions" },
   { label: "Guide", href: "/guides" },
-  { label: 'Solutions', href: '/solutions' },
-  { label: "Blog", href: "/blog" },
+  { label: "Pricing", href: "/pricing" },
   { label: "Contact", href: "/contact" },
 ];
 
 export default function Navbar() {
   const [open, setOpen] = useState(false);
+  const pathname = usePathname(); // Get current route
 
   return (
-    <nav className="sticky top-0 z-50 bg-brand-blue">
-      <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+    <nav className="sticky top-0 z-50 ">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-16">
           {/* Logo */}
           <Link href="/" className="flex items-center gap-2">
@@ -30,14 +30,23 @@ export default function Navbar() {
 
           {/* Desktop nav */}
           <div className="hidden md:flex items-center gap-8">
-            {navLinks.map((l) => (
-              <Link
-                key={l.href}
-                href={l.href}
-                className="text-sm text-white/80 hover:text-white transition-colors">
-                {l.label}
-              </Link>
-            ))}
+            {navLinks.map((l) => {
+              // Check if exact match OR if we are inside a sub-directory (e.g., /guides/setup)
+              const isActive = pathname === l.href || (l.href !== '/' && pathname.startsWith(l.href));
+
+              return (
+                <Link
+                  key={l.href}
+                  href={l.href}
+                  className={`text-sm transition-all duration-200 ${isActive
+                    ? "text-white font-bold drop-shadow-sm" // Active state
+                    : "text-white/80 hover:text-white font-medium" // Inactive state
+                    }`}
+                >
+                  {l.label}
+                </Link>
+              );
+            })}
           </div>
 
           {/* Desktop CTA */}
@@ -93,15 +102,23 @@ export default function Navbar() {
       {/* Mobile menu */}
       {open && (
         <div className="md:hidden bg-brand-blue-dark border-t border-white/10 px-4 pb-4">
-          {navLinks.map((l) => (
-            <Link
-              key={l.href}
-              href={l.href}
-              onClick={() => setOpen(false)}
-              className="block py-3 text-sm text-white/80 hover:text-white border-b border-white/10">
-              {l.label}
-            </Link>
-          ))}
+          {navLinks.map((l) => {
+            const isActive = pathname === l.href || (l.href !== '/' && pathname.startsWith(l.href));
+
+            return (
+              <Link
+                key={l.href}
+                href={l.href}
+                onClick={() => setOpen(false)}
+                className={`block py-3 text-sm border-b border-white/10 transition-colors ${isActive
+                  ? "text-white font-bold bg-white/5 px-3 rounded-t-sm" // Active Mobile
+                  : "text-white/80 hover:text-white px-3" // Inactive Mobile
+                  }`}
+              >
+                {l.label}
+              </Link>
+            );
+          })}
           <div className="flex gap-3 mt-4">
             <Link
               href="/login"

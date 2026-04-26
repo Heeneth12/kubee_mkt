@@ -15,7 +15,8 @@
       "Bash(npx next *)",
       "Bash(npx eslint *)",
       "Bash(node -e \"const {marked} = require\\('marked'\\); console.log\\(typeof marked\\)\")",
-      "Bash(node -e \"const {marked} = require\\('marked'\\); const html = marked\\('## test\\\\n<script>alert\\(1\\)</script>'\\); console.log\\(html\\)\")"
+      "Bash(node -e \"const {marked} = require\\('marked'\\); const html = marked\\('## test\\\\n<script>alert\\(1\\)</script>'\\); console.log\\(html\\)\")",
+      "Bash(curl -s http://localhost:50340)"
     ]
   },
   "enabledPlugins": {

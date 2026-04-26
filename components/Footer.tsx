@@ -30,7 +30,7 @@ const columns = [
 export default function Footer() {
   return (
     <footer className="bg-brand-blue-dark text-white">
-      <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+      <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
         <div className="flex flex-col md:flex-row justify-between gap-10">
           {/* Brand */}
           <div>

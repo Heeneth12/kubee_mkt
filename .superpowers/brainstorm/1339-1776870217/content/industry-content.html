@@ -1,0 +1,70 @@
+<h2>Industry Content Panel — What does each section show?</h2>
+<p class="subtitle">This is the layout for a single selected industry (e.g. Wholesale). Does this structure feel right?</p>
+
+<div class="mockup">
+  <div class="mockup-header">Main content panel when "Wholesale" is selected</div>
+  <div class="mockup-body" style="font-family:sans-serif;padding:24px;background:white;max-width:700px;">
+
+    <!-- Eyebrow + Headline -->
+    <div style="font-size:11px;font-weight:700;color:#1868DB;letter-spacing:.08em;text-transform:uppercase;margin-bottom:6px;">Wholesale & Distribution</div>
+    <h2 style="font-size:26px;font-weight:800;color:#0f172a;margin:0 0 10px;">Built for high-volume trading businesses</h2>
+    <p style="font-size:14px;color:#475569;line-height:1.7;margin-bottom:20px;">
+      Manage bulk purchase orders, multi-party invoicing, and GST compliance without spreadsheets.
+      Kubee gives distributors a live view of stock across all branches — so you never oversell or understock.
+    </p>
+
+    <!-- Pain → Solution chips -->
+    <div style="display:flex;gap:8px;flex-wrap:wrap;margin-bottom:24px;">
+      <span style="background:#FEF2F2;color:#DC2626;font-size:11px;padding:4px 10px;border-radius:20px;">❌ Manual order tracking</span>
+      <span style="font-size:16px;color:#94a3b8;">→</span>
+      <span style="background:#F0FDF4;color:#16A34A;font-size:11px;padding:4px 10px;border-radius:20px;">✅ Automated PO management</span>
+    </div>
+
+    <!-- Feature pills grid -->
+    <div style="font-size:11px;font-weight:700;color:#64748b;text-transform:uppercase;letter-spacing:.06em;margin-bottom:10px;">Key features</div>
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:24px;">
+      <div style="background:#F8FAFC;border:1px solid #E2E8F0;border-radius:8px;padding:12px;">
+        <div style="font-size:18px;margin-bottom:4px;">📋</div>
+        <div style="font-size:12px;font-weight:700;color:#1e293b;margin-bottom:2px;">Bulk Purchase Orders</div>
+        <div style="font-size:11px;color:#64748b;">Create, approve and track large orders with multi-SKU line items</div>
+      </div>
+      <div style="background:#F8FAFC;border:1px solid #E2E8F0;border-radius:8px;padding:12px;">
+        <div style="font-size:18px;margin-bottom:4px;">🧾</div>
+        <div style="font-size:12px;font-weight:700;color:#1e293b;margin-bottom:2px;">GST Invoicing</div>
+        <div style="font-size:11px;color:#64748b;">Auto CGST/SGST/IGST on every invoice. File-ready reports.</div>
+      </div>
+      <div style="background:#F8FAFC;border:1px solid #E2E8F0;border-radius:8px;padding:12px;">
+        <div style="font-size:18px;margin-bottom:4px;">🏭</div>
+        <div style="font-size:12px;font-weight:700;color:#1e293b;margin-bottom:2px;">Multi-Branch Stock</div>
+        <div style="font-size:11px;color:#64748b;">Live stock levels across all warehouses and branches</div>
+      </div>
+      <div style="background:#F8FAFC;border:1px solid #E2E8F0;border-radius:8px;padding:12px;">
+        <div style="font-size:18px;margin-bottom:4px;">🤖</div>
+        <div style="font-size:12px;font-weight:700;color:#1e293b;margin-bottom:2px;">AI Reorder Suggestions</div>
+        <div style="font-size:11px;color:#64748b;">Predict demand and auto-suggest reorder quantities</div>
+      </div>
+    </div>
+
+    <!-- CTA -->
+    <div style="display:flex;gap:10px;align-items:center;">
+      <div style="background:#1868DB;color:white;padding:10px 20px;border-radius:6px;font-size:13px;font-weight:700;">Request a Demo</div>
+      <div style="color:#1868DB;font-size:13px;font-weight:600;">See Wholesale Guide →</div>
+    </div>
+
+  </div>
+</div>
+
+<div class="section" style="margin-top:24px;">
+  <h3>Industries in the sidebar</h3>
+  <p class="subtitle">These 8 industries will be listed. All good, or want to add/remove any?</p>
+  <div class="options" data-multiselect>
+    <div class="option" data-choice="wholesale" onclick="toggleSelect(this)"><div class="letter">1</div><div class="content"><h3>Wholesale &amp; Distribution</h3><p>Bulk orders, multi-branch, GST invoicing</p></div></div>
+    <div class="option" data-choice="hospitals" onclick="toggleSelect(this)"><div class="letter">2</div><div class="content"><h3>Hospitals &amp; Clinics</h3><p>Medical supplies, expiry tracking, compliance</p></div></div>
+    <div class="option" data-choice="warehouse" onclick="toggleSelect(this)"><div class="letter">3</div><div class="content"><h3>Warehousing &amp; 3PL</h3><p>Multi-location, barcode scan, transfers</p></div></div>
+    <div class="option" data-choice="retail" onclick="toggleSelect(this)"><div class="letter">4</div><div class="content"><h3>Retail &amp; D2C</h3><p>POS sync, fast checkout, low-stock alerts</p></div></div>
+    <div class="option" data-choice="pharma" onclick="toggleSelect(this)"><div class="letter">5</div><div class="content"><h3>Pharma &amp; Chemicals</h3><p>Batch/lot tracking, expiry, regulatory</p></div></div>
+    <div class="option" data-choice="fmcg" onclick="toggleSelect(this)"><div class="letter">6</div><div class="content"><h3>FMCG &amp; Food</h3><p>Perishables, demand spikes, distributor network</p></div></div>
+    <div class="option" data-choice="manufacturing" onclick="toggleSelect(this)"><div class="letter">7</div><div class="content"><h3>Manufacturing</h3><p>Raw materials, BOM, production tracking</p></div></div>
+    <div class="option" data-choice="ecommerce" onclick="toggleSelect(this)"><div class="letter">8</div><div class="content"><h3>E-commerce &amp; Marketplaces</h3><p>Multi-channel sync, returns, fulfilment</p></div></div>
+  </div>
+</div>

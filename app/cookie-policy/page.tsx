@@ -9,9 +9,9 @@ export const metadata: Metadata = {
 export default function CookiePolicyPage() {
   return (
     <>
-      <section className="bg-gradient-to-br from-brand-blue-dark to-brand-blue py-16 text-center px-4">
+      <section className="bg-brand-blue py-16 text-center px-4">
         <h1 className="text-3xl sm:text-4xl font-extrabold text-white mb-2">Cookie Policy</h1>
-        <p className="text-sm text-white/70">Last updated: 20 April 2026</p>
+        <p className="text-sm text-white/80">Last updated: 20 April 2026</p>
       </section>
 
       <section className="py-16 px-4">

@@ -1,0 +1,92 @@
+<h2>Solutions Page — Layout Direction</h2>
+<p class="subtitle">Which overall page structure fits Kubee's solutions page best?</p>
+
+<div class="cards">
+
+  <!-- Option A -->
+  <div class="card" data-choice="a" onclick="toggleSelect(this)">
+    <div class="card-image" style="background:#f0f4ff;padding:16px;font-family:sans-serif;">
+      <div style="background:#1868DB;color:white;padding:8px 12px;border-radius:4px;font-size:11px;font-weight:700;margin-bottom:10px;">SOLUTIONS — HERO</div>
+      <div style="display:flex;gap:8px;margin-bottom:8px;">
+        <div style="flex:1;background:#e2e8f0;border-radius:4px;padding:8px;font-size:10px;color:#64748b;text-align:center;">Wholesale</div>
+        <div style="flex:1;background:#e2e8f0;border-radius:4px;padding:8px;font-size:10px;color:#64748b;text-align:center;">Hospitals</div>
+        <div style="flex:1;background:#e2e8f0;border-radius:4px;padding:8px;font-size:10px;color:#64748b;text-align:center;">Warehouse</div>
+        <div style="flex:1;background:#e2e8f0;border-radius:4px;padding:8px;font-size:10px;color:#64748b;text-align:center;">Retail</div>
+      </div>
+      <div style="background:#f8fafc;border:1px solid #e2e8f0;border-radius:4px;padding:10px;font-size:10px;color:#475569;">
+        ↓ Click industry tab → scrolls to that section with icon, headline, feature list, CTA
+      </div>
+    </div>
+    <div class="card-body">
+      <h3>A — Tabbed Industry Switcher</h3>
+      <p>Top hero with industry tabs. Click a tab to jump to that section. Each industry gets a full-width block: headline, 4–5 key benefits, screenshot mockup, and CTA.</p>
+    </div>
+  </div>
+
+  <!-- Option B -->
+  <div class="card" data-choice="b" onclick="toggleSelect(this)">
+    <div class="card-image" style="background:#f0f4ff;padding:16px;font-family:sans-serif;">
+      <div style="background:#002072;color:white;padding:8px 12px;border-radius:4px;font-size:11px;font-weight:700;margin-bottom:10px;">SOLUTIONS — HERO</div>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:8px;">
+        <div style="background:white;border:1px solid #e2e8f0;border-radius:6px;padding:10px;">
+          <div style="font-size:18px;margin-bottom:4px;">🏭</div>
+          <div style="font-size:10px;font-weight:700;color:#1e293b;margin-bottom:3px;">Wholesale</div>
+          <div style="font-size:9px;color:#64748b;line-height:1.4;">Bulk orders, supplier mgmt, GST invoicing</div>
+        </div>
+        <div style="background:white;border:1px solid #e2e8f0;border-radius:6px;padding:10px;">
+          <div style="font-size:18px;margin-bottom:4px;">🏥</div>
+          <div style="font-size:10px;font-weight:700;color:#1e293b;margin-bottom:3px;">Hospitals</div>
+          <div style="font-size:9px;color:#64748b;line-height:1.4;">Medical supplies, expiry tracking, compliance</div>
+        </div>
+        <div style="background:white;border:1px solid #e2e8f0;border-radius:6px;padding:10px;">
+          <div style="font-size:18px;margin-bottom:4px;">📦</div>
+          <div style="font-size:10px;font-weight:700;color:#1e293b;margin-bottom:3px;">Warehouse</div>
+          <div style="font-size:9px;color:#64748b;line-height:1.4;">Multi-location stock, barcode scan, transfers</div>
+        </div>
+        <div style="background:white;border:1px solid #e2e8f0;border-radius:6px;padding:10px;">
+          <div style="font-size:18px;margin-bottom:4px;">🛒</div>
+          <div style="font-size:10px;font-weight:700;color:#1e293b;margin-bottom:3px;">Retail</div>
+          <div style="font-size:9px;color:#64748b;line-height:1.4;">POS sync, fast checkout, low-stock alerts</div>
+        </div>
+      </div>
+      <div style="font-size:9px;color:#94a3b8;text-align:center;">Click any card → expands into full detail section below</div>
+    </div>
+    <div class="card-body">
+      <h3>B — Industry Card Grid + Expand</h3>
+      <p>Hero with a 2×N grid of industry cards. Each card expands into a detail section showing pain points, Kubee's solution, and key features. Clean, scannable.</p>
+    </div>
+  </div>
+
+  <!-- Option C -->
+  <div class="card" data-choice="c" onclick="toggleSelect(this)">
+    <div class="card-image" style="background:#f0f4ff;padding:16px;font-family:sans-serif;">
+      <div style="background:#1868DB;color:white;padding:8px 12px;border-radius:4px;font-size:11px;font-weight:700;margin-bottom:10px;">SOLUTIONS — HERO</div>
+      <div style="display:flex;gap:0;margin-bottom:8px;">
+        <div style="width:90px;background:#f8fafc;border-right:1px solid #e2e8f0;padding:8px;font-size:9px;">
+          <div style="font-weight:700;color:#1868DB;margin-bottom:6px;font-size:8px;">INDUSTRIES</div>
+          <div style="padding:4px;background:#E9F2FE;border-radius:3px;color:#1868DB;margin-bottom:3px;">▶ Wholesale</div>
+          <div style="padding:4px;color:#64748b;margin-bottom:3px;">Hospitals</div>
+          <div style="padding:4px;color:#64748b;margin-bottom:3px;">Warehouse</div>
+          <div style="padding:4px;color:#64748b;margin-bottom:3px;">Retail</div>
+          <div style="padding:4px;color:#64748b;margin-bottom:3px;">Pharma</div>
+          <div style="padding:4px;color:#64748b;">FMCG</div>
+        </div>
+        <div style="flex:1;padding:8px;background:white;">
+          <div style="font-size:11px;font-weight:700;color:#1e293b;margin-bottom:4px;">Built for Wholesale</div>
+          <div style="font-size:9px;color:#64748b;margin-bottom:6px;line-height:1.5;">Manage bulk purchases, multi-party orders and GST-compliant invoicing from one dashboard.</div>
+          <div style="display:flex;flex-wrap:wrap;gap:3px;">
+            <span style="background:#E9F2FE;color:#1868DB;font-size:8px;padding:2px 5px;border-radius:10px;">Bulk ordering</span>
+            <span style="background:#E9F2FE;color:#1868DB;font-size:8px;padding:2px 5px;border-radius:10px;">GST invoicing</span>
+            <span style="background:#E9F2FE;color:#1868DB;font-size:8px;padding:2px 5px;border-radius:10px;">Multi-warehouse</span>
+          </div>
+        </div>
+      </div>
+      <div style="font-size:9px;color:#94a3b8;text-align:center;">Sidebar nav — same guides-page layout pattern</div>
+    </div>
+    <div class="card-body">
+      <h3>C — Sidebar Nav (like Guides page)</h3>
+      <p>Left sidebar listing all industries. Clicking switches the main content panel. Mirrors the guides page pattern — consistent UX across the site.</p>
+    </div>
+  </div>
+
+</div>
