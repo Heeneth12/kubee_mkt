@@ -10,18 +10,18 @@ export default function PricingToggle() {
   return (
     <div>
       {/* Toggle Container */}
-      <div className="flex justify-center mb-10">
+      <div className="flex justify-center mb-12">
         <div
           role="group"
           aria-label="Billing period"
-          className="inline-flex bg-slate-100 border border-slate-100 rounded-xl gap-1 shadow-sm"
+          className="inline-flex bg-ez-white border border-ez-border p-1"
         >
           <button
             onClick={() => setAnnual(false)}
             aria-pressed={!annual}
-            className={`text-sm px-5 py-2 rounded-lg transition-all font-medium ${!annual
-              ? "bg-white text-[#0B1536] font-bold shadow-sm border border-slate-200/50"
-              : "text-slate-500 hover:text-slate-800"
+            className={`text-ez-sm px-6 py-2 min-h-[32px] rounded transition-[background-color,color] duration-ez font-medium outline-none ${!annual
+              ? "bg-ez-ash text-ez-heading border border-ez-border"
+              : "text-ez-secondary hover:text-ez-heading border border-transparent"
               }`}
           >
             Monthly
@@ -30,13 +30,13 @@ export default function PricingToggle() {
           <button
             onClick={() => setAnnual(true)}
             aria-pressed={annual}
-            className={`text-sm px-5 py-2 rounded-lg transition-all font-medium flex items-center gap-2 ${annual
-              ? "bg-white text-[#0B1536] font-bold shadow-sm border border-slate-200/50"
-              : "text-slate-500 hover:text-slate-800"
+            className={`text-ez-sm px-6 py-2 min-h-[32px] rounded transition-[background-color,color] duration-ez font-medium flex items-center gap-2 outline-none ${annual
+              ? "bg-ez-ash text-ez-heading border border-ez-border"
+              : "text-ez-secondary hover:text-ez-heading border border-transparent"
               }`}
           >
             Annual
-            <span className="bg-green-500 text-white text-[10px] font-bold px-2 py-0.5 rounded-full">
+            <span className="text-ez-primary ez-micro-label">
               Save 20%
             </span>
           </button>
@@ -44,7 +44,7 @@ export default function PricingToggle() {
       </div>
 
       {/* Cards */}
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-5xl mx-auto">
+      <div className="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-[1000px] mx-auto text-left">
         {pricingTiers.map((tier) => (
           <PricingCard key={tier.id} tier={tier} annual={annual} />
         ))}

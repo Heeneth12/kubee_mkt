@@ -1,7 +1,5 @@
 import type { Metadata } from "next";
 import HeroSection from "@/components/HeroSection";
-import StatsBar from "@/components/StatsBar";
-import FeaturesGrid from "@/components/FeaturesGrid";
 import FeaturesAlternating from "@/components/FeaturesAlternating";
 import FooterCTA from "@/components/FooterCTA";
 import Integrations from "@/components/Integrations";
@@ -16,9 +14,9 @@ export default function HomePage() {
   return (
     <>
       <HeroSection />
-      <FeaturesAlternating />
+      {/* <FeaturesAlternating /> */}
       <Integrations />
-      <FooterCTA />
+      {/* <FooterCTA /> */}
     </>
   );
 }

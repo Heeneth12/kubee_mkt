@@ -10,18 +10,21 @@ export const metadata: Metadata = {
 
 export default function PricingPage() {
   return (
-    <>
+    <div className="bg-white min-h-screen font-sans">
       {/* Hero */}
-      <section className="pt-16 pb-24 text-center px-4">
-        <h1 className="text-4xl sm:text-5xl font-extrabold text-black text-gray-800 mb-4">
-          Simple, Transparent Pricing
-        </h1>
-        <p className="text-lg text-gray-700 max-w-md mx-auto mb-10">
-          Start free. Upgrade when your business needs more. No hidden charges.
-        </p>
-        <PricingToggle />
+      <section className="py-18 text-center px-6 lg:px-10">
+        <div className="max-w-[1383px] mx-auto">
+          <h1 className="text-[40px] font-medium text-ez-heading leading-tight mb-4">
+            Simple, Transparent Pricing
+          </h1>
+          <p className="text-ez-md text-ez-secondary max-w-md mx-auto mb-12">
+            Start free. Upgrade when your business needs more. No hidden charges.
+          </p>
+          <PricingToggle />
+        </div>
       </section>
+      {/* FAQs */}
       <FAQSection />
-    </>
+    </div>
   );
 }

@@ -29,26 +29,39 @@ export default function FAQSection() {
   const [open, setOpen] = useState<number | null>(null);
 
   return (
-    <section className="bg-brand-light py-20">
-      <div className="max-w-2xl mx-auto px-4 sm:px-6">
-        <h2 className="text-3xl font-extrabold text-slate-900 text-center mb-10">
+    <section className="bg-white py-24 px-6 lg:px-10">
+      <div className="max-w-[800px] mx-auto">
+        <h2 className="text-ez-hero font-medium text-ez-heading text-center mb-12">
           Frequently Asked Questions
         </h2>
-        <div className="space-y-3">
+
+        {/* Flat Accordion List */}
+        <div className="border-t border-ez-border">
           {faqs.map((faq, i) => (
-            <div key={faq.q} className="bg-white rounded-xl border border-slate-100 overflow-hidden">
+            <div key={faq.q} className="border-b border-ez-border">
               <button
                 onClick={() => setOpen(open === i ? null : i)}
                 aria-expanded={open === i}
-                className="w-full flex justify-between items-center px-5 py-4 text-left"
+                className="w-full flex justify-between items-center py-6 text-left transition-colors duration-ez outline-none group"
               >
-                <span className="font-semibold text-sm text-slate-800">{faq.q}</span>
-                <span className="text-slate-400 ml-4 flex-shrink-0 text-lg">
-                  {open === i ? "−" : "+"}
+                <span className="font-medium text-ez-md text-ez-heading group-hover:text-ez-primary transition-colors duration-ez">
+                  {faq.q}
+                </span>
+                <span className="text-ez-muted group-hover:text-ez-primary transition-colors duration-ez ml-4 flex-shrink-0">
+                  {open === i ? (
+                    <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="1.5" d="M20 12H4" />
+                    </svg>
+                  ) : (
+                    <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="1.5" d="M12 4v16m8-8H4" />
+                    </svg>
+                  )}
                 </span>
               </button>
+
               {open === i && (
-                <div className="px-5 pb-4 text-sm text-slate-500 leading-relaxed border-t border-slate-100 pt-3">
+                <div className="pb-6 text-ez-base text-ez-body leading-normal animate-in slide-in-from-top-2 duration-ez">
                   {faq.a}
                 </div>
               )}

@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import { useState } from "react";
-import { usePathname } from "next/navigation";
+import { usePathname, useRouter } from "next/navigation";
 
 const navLinks = [
   { label: "Features", href: "/features" },
@@ -15,21 +15,20 @@ const navLinks = [
 export default function Navbar() {
   const [open, setOpen] = useState(false);
   const pathname = usePathname(); // Get current route
+  const router = useRouter();
 
   return (
-    <nav className="sticky top-0 z-50 ">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <nav className="sticky top-0 z-50 bg-white border-b border-ez-border">
+      <div className="max-w-345 mx-auto px-6 lg:px-10">
         <div className="flex items-center justify-between h-16">
+
           {/* Logo */}
-          <Link href="/" className="flex items-center gap-2">
-            <svg className="w-8 h-8 text-white" viewBox="0 0 24 24" fill="currentColor">
-              <path d="M12 2L2 22h20L12 2zm0 4.5l6.5 13h-13L12 6.5z" />
-            </svg>
-            <span className="font-extrabold text-xl text-white">Kubee</span>
+          <Link href="/" className="flex items-center gap-2 outline-none">
+            <span className="font-bold text-lg">Kubee</span>
           </Link>
 
           {/* Desktop nav */}
-          <div className="hidden md:flex items-center gap-8">
+          <div className="hidden md:flex items-center gap-1 absolute left-1/2 -translate-x-1/2">
             {navLinks.map((l) => {
               // Check if exact match OR if we are inside a sub-directory (e.g., /guides/setup)
               const isActive = pathname === l.href || (l.href !== '/' && pathname.startsWith(l.href));
@@ -38,9 +37,9 @@ export default function Navbar() {
                 <Link
                   key={l.href}
                   href={l.href}
-                  className={`text-sm transition-all duration-200 ${isActive
-                    ? "text-white font-bold drop-shadow-sm" // Active state
-                    : "text-white/80 hover:text-white font-medium" // Inactive state
+                  className={`px-4 py-1.5 min-h-[32px] rounded text-ez-md font-medium transition-[background-color,color] duration-ez outline-none ${isActive
+                    ? "text-ez-heading bg-ez-ash"
+                    : "text-ez-secondary hover:text-ez-heading hover:bg-ez-ash"
                     }`}
                 >
                   {l.label}
@@ -50,49 +49,27 @@ export default function Navbar() {
           </div>
 
           {/* Desktop CTA */}
-          <div className="hidden md:flex items-center gap-3">
-            <Link
-              href="/login"
-              className="px-5 py-2.5 rounded text-sm font-semibold text-slate-800 bg-white hover:bg-slate-50 transition-colors">
-              Sign in
-            </Link>
-            <Link
-              href="/signup"
-              className="px-5 py-2.5 rounded text-sm font-semibold text-slate-900 bg-[#96F2A4] hover:bg-[#85e193] transition-colors">
-              Request access
-            </Link>
+          <div className="hidden md:flex items-center justify-center gap-3">
+            <button onClick={() => router.push('/signup')} className="ez-btn ez-btn-primary">
+              Sign In
+            </button>
+            <button onClick={() => router.push('/login')} className="ez-btn ez-surface border border-ez-ash">
+              See How It Works
+            </button>
           </div>
 
           {/* Mobile hamburger */}
           <button
             onClick={() => setOpen(!open)}
-            className="md:hidden text-white p-2"
+            className="md:hidden text-ez-heading p-2 transition-colors duration-ez outline-none"
             aria-label="Toggle menu">
             {open ? (
-              <svg
-                className="w-6 h-6"
-                fill="none"
-                stroke="currentColor"
-                viewBox="0 0 24 24">
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  strokeWidth={2}
-                  d="M6 18L18 6M6 6l12 12"
-                />
+              <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M6 18L18 6M6 6l12 12" />
               </svg>
             ) : (
-              <svg
-                className="w-6 h-6"
-                fill="none"
-                stroke="currentColor"
-                viewBox="0 0 24 24">
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  strokeWidth={2}
-                  d="M4 6h16M4 12h16M4 18h16"
-                />
+              <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M4 6h16M4 12h16M4 18h16" />
               </svg>
             )}
           </button>
@@ -100,39 +77,42 @@ export default function Navbar() {
       </div>
 
       {/* Mobile menu */}
-      {open && (
-        <div className="md:hidden bg-brand-blue-dark border-t border-white/10 px-4 pb-4">
-          {navLinks.map((l) => {
-            const isActive = pathname === l.href || (l.href !== '/' && pathname.startsWith(l.href));
+      {
+        open && (
+          <div className="md:hidden bg-white border-t border-ez-border px-6 pb-6 pt-2">
+            {navLinks.map((l) => {
+              const isActive = pathname === l.href || (l.href !== '/' && pathname.startsWith(l.href));
 
-            return (
-              <Link
-                key={l.href}
-                href={l.href}
-                onClick={() => setOpen(false)}
-                className={`block py-3 text-sm border-b border-white/10 transition-colors ${isActive
-                  ? "text-white font-bold bg-white/5 px-3 rounded-t-sm" // Active Mobile
-                  : "text-white/80 hover:text-white px-3" // Inactive Mobile
-                  }`}
-              >
-                {l.label}
-              </Link>
-            );
-          })}
-          <div className="flex gap-3 mt-4">
-            <Link
-              href="/login"
-              className="flex-1 text-center text-sm text-white border border-white/30 px-4 py-2 rounded-lg">
-              Sign in
-            </Link>
-            <Link
-              href="/signup"
-              className="flex-1 text-center text-sm font-bold bg-white text-brand-blue-dark px-4 py-2 rounded-lg">
-              Start Free
-            </Link>
+              return (
+                <Link
+                  key={l.href}
+                  href={l.href}
+                  onClick={() => setOpen(false)}
+                  className={`block py-3 text-ez-base font-medium border-b border-ez-border last:border-0 transition-colors duration-ez outline-none ${isActive
+                    ? "text-ez-heading"
+                    : "text-ez-secondary hover:text-ez-heading"
+                    }`}
+                >
+                  {l.label}
+                </Link>
+              );
+            })}
+
+            <div className="flex flex-col gap-3 mt-6">
+              <button
+                onClick={() => { setOpen(false); router.push('/signup'); }}
+                className="ez-btn ez-btn-primary w-full">
+                Get Started Free &rarr;
+              </button>
+              <button
+                onClick={() => { setOpen(false); router.push('/login'); }}
+                className="ez-btn ez-surface border border-ez-ash w-full">
+                See How It Works
+              </button>
+            </div>
           </div>
-        </div>
-      )}
-    </nav>
+        )
+      }
+    </nav >
   );
 }
