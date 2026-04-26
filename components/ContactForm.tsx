@@ -136,8 +136,8 @@ export default function ContactPage() {
                   type="button"
                   onClick={() => setForm({ ...form, userType: "solo" })}
                   className={`relative flex flex-col p-5 border text-left transition-[border-color,background-color] duration-ez outline-none ${form.userType === "solo"
-                      ? "border-ez-primary bg-ez-ash"
-                      : "border-ez-border bg-white hover:border-ez-subtle"
+                    ? "border-ez-primary bg-ez-ash"
+                    : "border-ez-border bg-white hover:border-ez-subtle"
                     }`}
                 >
                   {form.userType === "solo" && (
@@ -164,8 +164,8 @@ export default function ContactPage() {
                   type="button"
                   onClick={() => setForm({ ...form, userType: "team" })}
                   className={`relative flex flex-col p-5 border text-left transition-[border-color,background-color] duration-ez outline-none ${form.userType === "team"
-                      ? "border-ez-primary bg-ez-ash"
-                      : "border-ez-border bg-white hover:border-ez-subtle"
+                    ? "border-ez-primary bg-ez-ash"
+                    : "border-ez-border bg-white hover:border-ez-subtle"
                     }`}
                 >
                   {form.userType === "team" && (
@@ -229,7 +229,7 @@ export default function ContactPage() {
 
         {/* Right Column: Image Placeholder */}
         {/* Flat background, no shadows, no gradients. Text relies purely on contrast. */}
-        <div className="hidden lg:flex flex-1 bg-ez-carbon flex-col justify-end p-12">
+        <div className="hidden lg:flex flex-1 bg-ez-carbon flex-col justify-end p-12 rounded">
 
           <div className="text-white">
             <h2 className="text-ez-2xl font-medium leading-normal mb-8 text-white/90">
@@ -255,7 +255,7 @@ export default function ContactPage() {
 
       {/* Bottom CTA Section */}
       <div className="border-t border-ez-border bg-ez-ash">
-        <div className="max-w-[1383px] mx-auto px-6 lg:px-10 py-24 lg:py-32 text-center">
+        <div className="max-w-[1383px] mx-auto px-6 lg:px-10 py-14 lg:py-18 text-center">
           <h2 className="text-[40px] font-medium text-ez-heading mb-4 leading-tight">Let's get started on something great</h2>
           <p className="text-ez-md text-ez-secondary mb-10">Join over 4,000+ freelancers and teams already growing with Untitled.</p>
 

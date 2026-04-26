@@ -36,7 +36,7 @@ export default function PricingToggle() {
               }`}
           >
             Annual
-            <span className="text-ez-primary ez-micro-label">
+            <span className="text-ez-primary">
               Save 20%
             </span>
           </button>
