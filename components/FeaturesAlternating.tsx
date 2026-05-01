@@ -218,8 +218,8 @@ export default function FeatureSections() {
 
       {/* AI Automation */}
       <div className="py-8 lg:py-12">
-        <div className="max-w-7xl mx-auto px-6 lg:px-10">
-          <div className="bg-ez-ash p-8 lg:p-12">
+        <div className="max-w-345 mx-auto px-6 lg:px-10">
+          <div className="bg-ez-ash p-8 lg:p-12 rounded">
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-14 lg:gap-20 items-center">
 
               <div className="order-2 lg:order-1">
@@ -253,8 +253,8 @@ export default function FeatureSections() {
 
       {/* Digital Payments */}
       <div className="py-8 lg:py-12 bg-white">
-        <div className="max-w-7xl mx-auto px-6 lg:px-10">
-          <div className="bg-ez-ash p-8 lg:p-12">
+        <div className="max-w-345 mx-auto px-6 lg:px-10">
+          <div className="bg-ez-ash p-8 lg:p-12 rounded">
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-14 lg:gap-20 items-center">
 
               <div className="max-w-xl">

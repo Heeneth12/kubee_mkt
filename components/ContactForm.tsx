@@ -3,271 +3,387 @@
 import { useState } from "react";
 import Link from "next/link";
 
+type CardType = "help" | "trial" | "sales" | "faq" | "press" | null;
+
 type FormState = {
   firstName: string;
   lastName: string;
   email: string;
   phone: string;
   countryCode: string;
-  userType: "solo" | "team" | null;
+  message: string;
   agreed: boolean;
 };
 
+const CARDS = [
+  {
+    id: "help" as CardType,
+    title: "Get help",
+    description: "Speak to our team today and ask anything about our product.",
+    cta: "Get info",
+    icon: (
+      <svg fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5} className="w-5 h-5">
+        <path strokeLinecap="round" strokeLinejoin="round" d="M18.364 5.636a9 9 0 11-12.728 0M12 9v4m0 4h.01" />
+      </svg>
+    ),
+  },
+  {
+    id: "trial" as CardType,
+    title: "Try it free",
+    description: "See how we can help your business by getting early access.",
+    cta: "Get started",
+    icon: (
+      <svg fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5} className="w-5 h-5">
+        <path strokeLinecap="round" strokeLinejoin="round" d="M13 10V3L4 14h7v7l9-11h-7z" />
+      </svg>
+    ),
+  },
+  {
+    id: "sales" as CardType,
+    title: "Contact Sales",
+    description: "Speak to someone from our sales team today.",
+    cta: "Contact Sales",
+    icon: (
+      <svg fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5} className="w-5 h-5">
+        <path strokeLinecap="round" strokeLinejoin="round" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
+      </svg>
+    ),
+  },
+  {
+    id: "faq" as CardType,
+    title: "Have a question?",
+    description: "See our frequently asked questions.",
+    cta: "Get Answers",
+    icon: (
+      <svg fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5} className="w-5 h-5">
+        <path strokeLinecap="round" strokeLinejoin="round" d="M8.228 9c.549-1.165 2.03-2 3.772-2 2.21 0 4 1.343 4 3 0 1.4-1.278 2.575-3.006 2.907-.542.104-.994.54-.994 1.093m0 3h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+      </svg>
+    ),
+  },
+  {
+    id: "press" as CardType,
+    title: "Press & Media",
+    description: "Get in touch with our PR team today.",
+    cta: "Press Contact",
+    icon: (
+      <svg fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5} className="w-5 h-5">
+        <path strokeLinecap="round" strokeLinejoin="round" d="M19 20H5a2 2 0 01-2-2V6a2 2 0 012-2h10a2 2 0 012 2v1m2 13a2 2 0 01-2-2V7m2 13a2 2 0 002-2V9a2 2 0 00-2-2h-2m-4-3H9M7 16h6M7 8h6v4H7V8z" />
+      </svg>
+    ),
+  },
+];
+
+const FORM_TITLES: Record<NonNullable<CardType>, { title: string; sub: string }> = {
+  help: { title: "Get in touch with support", sub: "Our friendly team will get back to you within 24 hours." },
+  trial: { title: "Start your free trial", sub: "Tell us a bit about yourself to get early access." },
+  sales: { title: "Talk to sales", sub: "Our sales team is ready to help you find the right plan." },
+  faq: { title: "Ask us anything", sub: "Can't find the answer? Send us a message." },
+  press: { title: "Press & media enquiries", sub: "Reach out to our communications team." },
+};
+
+const ArrowRight = () => (
+  <svg fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5} className="w-2.5 h-2.5 transition-transform duration-200 group-hover:translate-x-0.5">
+    <path strokeLinecap="round" strokeLinejoin="round" d="M9 5l7 7-7 7" />
+  </svg>
+);
+
 export default function ContactPage() {
+  const [activeCard, setActiveCard] = useState<CardType>(null);
   const [form, setForm] = useState<FormState>({
     firstName: "",
     lastName: "",
     email: "",
     phone: "",
     countryCode: "US",
-    userType: "solo",
+    message: "",
     agreed: false,
   });
-
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitted, setSubmitted] = useState(false);
+
+  const handleCardClick = (id: CardType) => {
+    setActiveCard((prev) => (prev === id ? null : id));
+    setSubmitted(false);
+  };
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setIsSubmitting(true);
-    // Simulate API call
     await new Promise((resolve) => setTimeout(resolve, 1500));
     setIsSubmitting(false);
     setSubmitted(true);
   };
 
+  const topCards = CARDS.slice(0, 2);
+  const bottomCards = CARDS.slice(2);
+
   return (
     <div className="min-h-screen bg-ez-white font-sans text-ez-body">
-      {/* Main Content Split */}
-      <div className="max-w-[1383px] mx-auto px-6 lg:px-10 py-16 lg:py-24 flex flex-col lg:flex-row gap-12 lg:gap-20">
+      <div className="max-w-[1383px] mx-auto px-6 lg:px-10 py-16 lg:py-12">
 
-        {/* Left Column: Form */}
-        <div className="flex-1 w-full max-w-xl mx-auto lg:mx-0">
-          <div className="mb-10">
-            <h1 className="text-ez-hero font-medium text-ez-heading mb-2 leading-tight">Get in touch</h1>
-            <p className="text-ez-md text-ez-secondary">Our friendly team would love to hear from you.</p>
-          </div>
+        {/* Page Header */}
+        <div className="mb-10 border-b border-ez-border pb-4">
+          <h1 className="text-ez-hero font-medium text-ez-heading leading-tight mb-1">Let&apos;s talk</h1>
+          <p className="text-ez-md text-ez-secondary">Need support or have a question? We&apos;re here to help.</p>
+        </div>
 
-          {submitted ? (
-            <div className="bg-ez-ash border border-ez-border p-8 text-center step-fade">
-              <div className="w-12 h-12 bg-white border border-ez-border text-ez-heading flex items-center justify-center mx-auto mb-4">
-                <svg className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="1.5">
-                  <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
-                </svg>
-              </div>
-              <h3 className="font-medium text-ez-lg text-ez-heading mb-2">Message received</h3>
-              <p className="text-ez-sm text-ez-secondary mb-6">Thanks for reaching out. We'll get back to you shortly.</p>
-              <button
-                onClick={() => setSubmitted(false)}
-                className="text-ez-sm font-medium text-ez-primary hover:text-ez-primary-hover transition-colors duration-ez outline-none"
+        {/* Top 2 cards */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 mb-3">
+          {topCards.map((card) => (
+            <button
+              key={card.id}
+              type="button"
+              onClick={() => handleCardClick(card.id)}
+              className={[
+                "group relative flex flex-col items-start p-6 text-left border transition-all duration-ez outline-none",
+                activeCard === card.id
+                  ? "border-ez-primary bg-[#EBF0FC]"
+                  : "border-ez-border bg-ez-ash hover:border-ez-subtle hover:bg-[#efefef] hover:-translate-y-px",
+              ].join(" ")}
+            >
+              {/* Active dot */}
+              <span
+                className={[
+                  "absolute top-3 right-3 w-2 h-2 rounded-full bg-ez-primary transition-all duration-200",
+                  activeCard === card.id ? "opacity-100 scale-100" : "opacity-0 scale-0",
+                ].join(" ")}
+              />
+
+              {/* Icon */}
+              <div
+                className={[
+                  "w-10 h-10 flex items-center justify-center border mb-4 transition-colors duration-ez",
+                  activeCard === card.id
+                    ? "bg-white border-ez-primary text-ez-primary"
+                    : "bg-white border-ez-border text-ez-heading",
+                ].join(" ")}
               >
-                Send another message
-              </button>
-            </div>
-          ) : (
-            <form onSubmit={handleSubmit} className="space-y-6">
-              {/* Name Row */}
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
-                <div className="space-y-1.5">
-                  <label className="ez-label">First name</label>
-                  <input
-                    type="text"
-                    placeholder="First name"
-                    required
-                    value={form.firstName}
-                    onChange={(e) => setForm({ ...form, firstName: e.target.value })}
-                    className="ez-input ez-input--default w-full"
-                  />
-                </div>
-                <div className="space-y-1.5">
-                  <label className="ez-label">Last name</label>
-                  <input
-                    type="text"
-                    placeholder="Last name"
-                    required
-                    value={form.lastName}
-                    onChange={(e) => setForm({ ...form, lastName: e.target.value })}
-                    className="ez-input ez-input--default w-full"
-                  />
-                </div>
+                {card.icon}
               </div>
 
-              {/* Email */}
-              <div className="space-y-1.5">
-                <label className="ez-label">Email</label>
-                <input
-                  type="email"
-                  placeholder="you@company.com"
-                  required
-                  value={form.email}
-                  onChange={(e) => setForm({ ...form, email: e.target.value })}
-                  className="ez-input ez-input--default w-full"
-                />
+              <h3 className="text-ez-base font-medium text-ez-heading mb-1">{card.title}</h3>
+              <p className="text-ez-xs text-ez-secondary leading-relaxed mb-4">{card.description}</p>
+              <span className="inline-flex items-center gap-1 text-ez-xs font-medium text-ez-primary">
+                {card.cta} <ArrowRight />
+              </span>
+            </button>
+          ))}
+        </div>
+
+        {/* Bottom 3 cards */}
+        <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 mb-8">
+          {bottomCards.map((card) => (
+            <button
+              key={card.id}
+              type="button"
+              onClick={() => handleCardClick(card.id)}
+              className={[
+                "group relative flex flex-col items-start p-5 text-left border transition-all duration-ez outline-none",
+                activeCard === card.id
+                  ? "border-ez-primary bg-[#EBF0FC]"
+                  : "border-ez-border bg-ez-ash hover:border-ez-subtle hover:bg-[#efefef] hover:-translate-y-px",
+              ].join(" ")}
+            >
+              {/* Active dot */}
+              <span
+                className={[
+                  "absolute top-3 right-3 w-2 h-2 rounded-full bg-ez-primary transition-all duration-200",
+                  activeCard === card.id ? "opacity-100 scale-100" : "opacity-0 scale-0",
+                ].join(" ")}
+              />
+
+              {/* Icon */}
+              <div
+                className={[
+                  "w-9 h-9 flex items-center justify-center border mb-3 transition-colors duration-ez",
+                  activeCard === card.id
+                    ? "bg-white border-ez-primary text-ez-primary"
+                    : "bg-white border-ez-border text-ez-heading",
+                ].join(" ")}
+              >
+                {card.icon}
               </div>
 
-              {/* Phone */}
-              <div className="space-y-1.5">
-                <label className="ez-label">Phone number</label>
-                <div className="flex border border-ez-border focus-within:border-ez-primary transition-[border-color] duration-ez bg-white">
-                  <select
-                    value={form.countryCode}
-                    onChange={(e) => setForm({ ...form, countryCode: e.target.value })}
-                    className="appearance-none w-20 pl-3 pr-2 py-2.5 bg-ez-ash border-r border-ez-border text-ez-sm text-ez-heading outline-none cursor-pointer"
-                    style={{ backgroundImage: `url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 20 20'%3e%3cpath stroke='%23171A20' stroke-linecap='round' stroke-linejoin='round' stroke-width='1.5' d='M6 8l4 4 4-4'/%3e%3c/svg%3e")`, backgroundPosition: `right 0.25rem center`, backgroundRepeat: `no-repeat`, backgroundSize: `1.2em 1.2em` }}
+              <h3 className="text-ez-sm font-medium text-ez-heading mb-1">{card.title}</h3>
+              <p className="text-[10px] text-ez-secondary leading-relaxed mb-3">{card.description}</p>
+              <span className="inline-flex items-center gap-1 text-[10px] font-medium text-ez-primary">
+                {card.cta} <ArrowRight />
+              </span>
+            </button>
+          ))}
+        </div>
+
+        {/* Expandable Form Panel */}
+        {activeCard && (
+          <div className="border border-ez-border bg-ez-ash p-8 mb-8 step-fade">
+            {submitted ? (
+              <div className="flex flex-col items-center text-center py-6 step-fade">
+                <div className="w-11 h-11 bg-white border border-ez-border flex items-center justify-center mb-4">
+                  <svg className="w-5 h-5 text-ez-primary" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
+                    <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
+                  </svg>
+                </div>
+                <h3 className="text-ez-lg font-medium text-ez-heading mb-1">Message received</h3>
+                <p className="text-ez-sm text-ez-secondary mb-5">Thanks for reaching out. We&apos;ll get back to you shortly.</p>
+                <button
+                  onClick={() => { setSubmitted(false); setActiveCard(null); }}
+                  className="text-ez-xs font-medium text-ez-primary hover:text-ez-primary-hover transition-colors duration-ez outline-none"
+                >
+                  Back to contact options
+                </button>
+              </div>
+            ) : (
+              <>
+                {/* Form header */}
+                <div className="mb-6 pb-5 border-b border-ez-border">
+                  <h2 className="text-ez-lg font-medium text-ez-heading mb-1">
+                    {FORM_TITLES[activeCard].title}
+                  </h2>
+                  <p className="text-ez-sm text-ez-secondary">{FORM_TITLES[activeCard].sub}</p>
+                </div>
+
+                <form onSubmit={handleSubmit} className="space-y-5">
+                  {/* Name row */}
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
+                    <div className="space-y-1.5">
+                      <label className="ez-label">First name</label>
+                      <input
+                        type="text"
+                        placeholder="First name"
+                        required
+                        value={form.firstName}
+                        onChange={(e) => setForm({ ...form, firstName: e.target.value })}
+                        className="ez-input ez-input--default w-full"
+                      />
+                    </div>
+                    <div className="space-y-1.5">
+                      <label className="ez-label">Last name</label>
+                      <input
+                        type="text"
+                        placeholder="Last name"
+                        required
+                        value={form.lastName}
+                        onChange={(e) => setForm({ ...form, lastName: e.target.value })}
+                        className="ez-input ez-input--default w-full"
+                      />
+                    </div>
+                  </div>
+
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
+
+                    {/* Email */}
+                    <div className="space-y-1.5">
+                      <label className="ez-label">Email</label>
+                      <input
+                        type="email"
+                        placeholder="you@company.com"
+                        required
+                        value={form.email}
+                        onChange={(e) => setForm({ ...form, email: e.target.value })}
+                        className="ez-input ez-input--default w-full"
+                      />
+                    </div>
+
+                    {/* Phone */}
+                    <div className="space-y-1.5">
+                      <label className="ez-label">Phone number</label>
+                      <div className="flex border border-ez-border focus-within:border-ez-primary transition-[border-color] duration-ez bg-white">
+                        <select
+                          value={form.countryCode}
+                          onChange={(e) => setForm({ ...form, countryCode: e.target.value })}
+                          className="appearance-none w-20 pl-3 pr-2 py-2 border-r border-ez-border text-ez-sm text-ez-heading outline-none cursor-pointer"
+                          style={{
+                            backgroundImage: `url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 20 20'%3e%3cpath stroke='%23171A20' stroke-linecap='round' stroke-linejoin='round' stroke-width='1.5' d='M6 8l4 4 4-4'/%3e%3c/svg%3e")`,
+                            backgroundPosition: "right 0.25rem center",
+                            backgroundRepeat: "no-repeat",
+                            backgroundSize: "1.2em 1.2em",
+                          }}
+                        >
+                          <option value="US">US</option>
+                          <option value="UK">UK</option>
+                          <option value="IN">IN</option>
+                        </select>
+                        <input
+                          type="tel"
+                          placeholder="+1 (555) 000-0000"
+                          value={form.phone}
+                          onChange={(e) => setForm({ ...form, phone: e.target.value })}
+                          className="flex-1 px-3 py-2.5 border-none focus:outline-none placeholder:text-ez-muted text-ez-base text-ez-heading bg-transparent"
+                        />
+                      </div>
+                    </div>
+                  </div>
+
+                  {/* Message */}
+                  <div className="space-y-1.5">
+                    <label className="ez-label">Message</label>
+                    <textarea
+                      placeholder="Tell us how we can help…"
+                      required
+                      rows={4}
+                      value={form.message}
+                      onChange={(e) => setForm({ ...form, message: e.target.value })}
+                      className="ez-input ez-input--default w-full resize-none"
+                    />
+                  </div>
+
+                  {/* Checkbox */}
+                  <div className="flex items-start pt-1">
+                    <div className="flex items-center h-5">
+                      <input
+                        id="privacy"
+                        type="checkbox"
+                        required
+                        checked={form.agreed}
+                        onChange={(e) => setForm({ ...form, agreed: e.target.checked })}
+                        className="w-4 h-4 cursor-pointer outline-none"
+                        style={{ accentColor: "var(--ez-color-primary)" }}
+                      />
+                    </div>
+                    <label htmlFor="privacy" className="ml-3 text-ez-sm text-ez-secondary cursor-pointer">
+                      You agree to our friendly{" "}
+                      <Link href="/privacy" className="text-ez-primary hover:text-ez-primary-hover transition-colors duration-ez">
+                        privacy policy
+                      </Link>
+                      .
+                    </label>
+                  </div>
+
+                  {/* Submit */}
+                  <button
+                    type="submit"
+                    disabled={isSubmitting}
+                    className="ez-btn ez-btn-primary w-1/2 h-11 min-h-[44px] mt-1"
                   >
-                    <option value="US">US</option>
-                    <option value="UK">UK</option>
-                    <option value="IN">IN</option>
-                  </select>
-                  <input
-                    type="tel"
-                    placeholder="+1 (555) 000-0000"
-                    value={form.phone}
-                    onChange={(e) => setForm({ ...form, phone: e.target.value })}
-                    className="flex-1 px-3 py-2.5 border-none focus:outline-none placeholder:text-ez-muted text-ez-base text-ez-heading bg-transparent"
-                  />
-                </div>
-              </div>
-
-              {/* User Type Selection Cards */}
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 pt-2">
-                {/* Solo Creator Card */}
-                <button
-                  type="button"
-                  onClick={() => setForm({ ...form, userType: "solo" })}
-                  className={`relative flex flex-col p-5 border text-left transition-[border-color,background-color] duration-ez outline-none ${form.userType === "solo"
-                    ? "border-ez-primary bg-ez-ash"
-                    : "border-ez-border bg-white hover:border-ez-subtle"
-                    }`}
-                >
-                  {form.userType === "solo" && (
-                    <div className="absolute top-4 right-4 text-ez-primary">
-                      <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
-                        <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
+                    {isSubmitting ? (
+                      <svg className="w-4 h-4 animate-spin text-white" viewBox="0 0 24 24" fill="none">
+                        <circle cx="12" cy="12" r="10" stroke="currentColor" strokeWidth={3} opacity="0.3" />
+                        <path d="M4 12a8 8 0 018-8" stroke="currentColor" strokeWidth={3} strokeLinecap="round" />
                       </svg>
-                    </div>
-                  )}
-                  {form.userType !== "solo" && (
-                    <div className="absolute top-4 right-4 w-5 h-5 rounded-full border border-ez-border" />
-                  )}
+                    ) : (
+                      "Send message"
+                    )}
+                  </button>
+                </form>
+              </>
+            )}
+          </div>
+        )}
 
-                  {/* Minimal Avatars */}
-                  <div className="flex -space-x-2 mb-4">
-                    <div className="w-8 h-8 rounded-full bg-ez-ash border border-white flex items-center justify-center text-ez-2xs font-medium text-ez-heading">1</div>
-                  </div>
-                  <h4 className="font-medium text-ez-heading text-ez-base mb-1">I'm a solo creator</h4>
-                  <p className="text-ez-xs text-ez-secondary">Automate basic tasks and manage workflows.</p>
-                </button>
-
-                {/* Team Card */}
-                <button
-                  type="button"
-                  onClick={() => setForm({ ...form, userType: "team" })}
-                  className={`relative flex flex-col p-5 border text-left transition-[border-color,background-color] duration-ez outline-none ${form.userType === "team"
-                    ? "border-ez-primary bg-ez-ash"
-                    : "border-ez-border bg-white hover:border-ez-subtle"
-                    }`}
-                >
-                  {form.userType === "team" && (
-                    <div className="absolute top-4 right-4 text-ez-primary">
-                      <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
-                        <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
-                      </svg>
-                    </div>
-                  )}
-                  {form.userType !== "team" && (
-                    <div className="absolute top-4 right-4 w-5 h-5 rounded-full border border-ez-border" />
-                  )}
-
-                  {/* Minimal Avatars */}
-                  <div className="flex -space-x-1 mb-4">
-                    <div className="w-8 h-8 rounded-full bg-white border border-ez-border flex items-center justify-center text-ez-2xs font-medium text-ez-heading">Z</div>
-                    <div className="w-8 h-8 rounded-full bg-ez-carbon border border-white flex items-center justify-center text-ez-2xs font-medium text-white">S</div>
-                    <div className="w-8 h-8 rounded-full bg-ez-ash border border-white flex items-center justify-center text-ez-2xs font-medium text-ez-heading">T</div>
-                  </div>
-                  <h4 className="font-medium text-ez-heading text-ez-base mb-1">I'm part of a team</h4>
-                  <p className="text-ez-xs text-ez-secondary">I need multi-user business automations.</p>
-                </button>
-              </div>
-
-              {/* Checkbox */}
-              <div className="flex items-start pt-2">
-                <div className="flex items-center h-5">
-                  <input
-                    id="privacy"
-                    type="checkbox"
-                    required
-                    checked={form.agreed}
-                    onChange={(e) => setForm({ ...form, agreed: e.target.checked })}
-                    className="w-4 h-4 cursor-pointer outline-none"
-                    style={{ accentColor: 'var(--ez-color-primary)' }}
-                  />
-                </div>
-                <label htmlFor="privacy" className="ml-3 text-ez-sm text-ez-secondary cursor-pointer">
-                  You agree to our friendly <Link href="/privacy" className="text-ez-primary hover:text-ez-primary-hover transition-colors duration-ez">privacy policy</Link>.
-                </label>
-              </div>
-
-              {/* Submit Button */}
-              <button
-                type="submit"
-                disabled={isSubmitting}
-                className="ez-btn ez-btn-primary w-full h-12 min-h-[48px] mt-2"
-              >
-                {isSubmitting ? (
-                  <svg className="w-4 h-4 animate-spin text-white" viewBox="0 0 24 24" fill="none">
-                    <circle cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="3" opacity="0.3" />
-                    <path d="M4 12a8 8 0 018-8" stroke="currentColor" strokeWidth="3" strokeLinecap="round" />
-                  </svg>
-                ) : (
-                  "Get in touch"
-                )}
-              </button>
-            </form>
-          )}
-        </div>
-
-        {/* Right Column: Image Placeholder */}
-        {/* Flat background, no shadows, no gradients. Text relies purely on contrast. */}
-        <div className="hidden lg:flex flex-1 bg-ez-carbon flex-col justify-end p-12 rounded">
-
-          <div className="text-white">
-            <h2 className="text-ez-2xl font-medium leading-normal mb-8 text-white/90">
-              "Untitled UI is the perfect tool for startups to keep track of their financials. Their intuitive dashboard and reporting capabilities have saved our team hours of manual work."
+        {/* Bottom CTA */}
+        <div className="bg-ez-carbon flex flex-col sm:flex-row items-start sm:items-center justify-between rounded gap-6 px-8 py-10">
+          <div>
+            <h2 className="text-[22px] font-medium text-white leading-tight mb-1">
+              Let&apos;s get started on something great
             </h2>
-
-            <div className="flex items-center justify-between">
-              <div>
-                <p className="font-medium text-ez-base text-white">— Allah Lane</p>
-                <p className="text-white/60 text-ez-sm mt-1">Founder, Layers.io</p>
-              </div>
-              <div className="flex gap-1">
-                {[1, 2, 3, 4, 5].map((star) => (
-                  <svg key={star} className="w-4 h-4 text-white" fill="currentColor" viewBox="0 0 20 20">
-                    <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
-                  </svg>
-                ))}
-              </div>
-            </div>
+            <p className="text-ez-sm text-white/50">Join 4,000+ teams already growing with Untitled.</p>
+          </div>
+          <div className="flex gap-3 flex-shrink-0">
+            <button className="ez-btn ez-btn-primary px-6 text-ez-sm">Get started</button>
+            <button className="ez-btn ez-btn-secondary px-6 text-ez-sm">View docs</button>
           </div>
         </div>
-      </div>
 
-      {/* Bottom CTA Section */}
-      <div className="border-t border-ez-border bg-ez-ash">
-        <div className="max-w-[1383px] mx-auto px-6 lg:px-10 py-14 lg:py-18 text-center">
-          <h2 className="text-[40px] font-medium text-ez-heading mb-4 leading-tight">Let's get started on something great</h2>
-          <p className="text-ez-md text-ez-secondary mb-10">Join over 4,000+ freelancers and teams already growing with Untitled.</p>
-
-          <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
-            <button className="ez-btn ez-btn-primary px-8">
-              Get started
-            </button>
-            <button className="ez-btn ez-btn-secondary px-8">
-              View Documentation
-            </button>
-          </div>
-        </div>
       </div>
     </div>
   );

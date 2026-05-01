@@ -7,7 +7,7 @@ import dashBoard from "@/assets/images/dashboard.png";
 
 function DashboardMockup() {
   return (
-    <div className="relative w-full max-w-6xl mx-auto mt-12 step-fade">
+    <div className="relative w-full max-w-6xl mx-auto mt-12 step-fade shadow-sm shadow-ez-ash-lite">
       <div className="bg-white border border-gray-200 rounded-sm overflow-hidden">
 
         {/* Window chrome */}
@@ -29,7 +29,7 @@ export default function HeroSection() {
   return (
     <section className="overflow-hidden"
       style={{
-        background: "linear-gradient(180deg, #c8d6e5 0%, #dfe6ed 30%, #f0f0f0 70%, #e8e8e8 100%)"
+        background: "linear-gradient(180deg, #c8d6e5 0%, #dfe6ed 30%, #f0f0f0 70%, #ffffff 100%)"
       }}>
       <div className="max-w-5xl mx-auto px-6 pt-20 text-center">
         <h1

@@ -14,9 +14,9 @@ export default function HomePage() {
   return (
     <>
       <HeroSection />
-      {/* <FeaturesAlternating /> */}
       <Integrations />
-      {/* <FooterCTA /> */}
+      <FeaturesAlternating />
+      <FooterCTA />
     </>
   );
 }
