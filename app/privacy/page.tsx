@@ -10,7 +10,7 @@ export default function PrivacyPage() {
   return (
     <div className="bg-white min-h-screen font-sans">
       {/* Hero Section */}
-      <section className="bg-ez-ash border-b border-ez-border py-8 text-center px-6 lg:px-10">
+      <section className="bg-ez-ash border-b border-ez-border py-12 text-center px-6 lg:px-10">
         <h1 className="text-[40px] font-medium text-ez-heading leading-tight mb-3">Privacy Policy</h1>
         <p className="text-ez-base text-ez-secondary">Last updated: 20 April 2026</p>
       </section>
