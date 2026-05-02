@@ -1,6 +1,6 @@
 "use client";
 
-import React from "react";
+import React, { useEffect } from "react";
 import Image from "next/image";
 import dashBoard from "@/assets/images/dashboard.png";
 
@@ -26,6 +26,20 @@ function DashboardMockup() {
 }
 
 export default function HeroSection() {
+
+  const handleOpenApp = (type: string) => {
+    if (type === "contact") {
+      window.open("https://app.kubee.in/auth/login?booking=true", "_blank");
+    }
+    if (type === "demo") {
+      window.open("https://app.kubee.in/auth/login", "_blank");
+    }
+  };
+
+  useEffect(() => {
+    fetch("https://ezauth-c4w0.onrender.com/actuator/health").catch(console.error);
+    fetch("https://ez-inventory.onrender.com/actuator/health").catch(console.error);
+  }, []);
   return (
     <section className="overflow-hidden"
       style={{
@@ -43,8 +57,8 @@ export default function HeroSection() {
           Built to scale your operations effortlessly.
         </p>
         <div className="flex items-center justify-center gap-3">
-          <button className="ez-btn ez-btn-primary">Get Started Free →</button>
-          <button className="ez-btn ez-surface border border-ez-ash">Book a Demo</button>
+          <button className="ez-btn ez-btn-primary" onClick={() => handleOpenApp("demo")}>Get Started Free →</button>
+          <button className="ez-btn ez-surface border border-ez-ash" onClick={() => handleOpenApp("contact")}>Book a Demo</button>
         </div>
         <p className="ez-micro-label my-5">Inventory Management</p>
       </div>
