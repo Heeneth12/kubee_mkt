@@ -233,17 +233,13 @@ const industries: Industry[] = [
 
 export default function SolutionsPage() {
     const [activeId, setActiveId] = useState<string>("wholesale");
-
-    // Note: ensure 'industries' is imported or defined in your actual file
-    const industry = industries.find((i) => i.id === activeId)!;
+    const industry = industries.find((i) => i.id === activeId) || industries[0];
 
     return (
-        <div className="flex min-h-[calc(100vh-64px)] bg-white font-sans text-slate-900">
-
-            {/* ── Sidebar ── */}
-            <aside className="w-72 shrink-0 border-r border-slate-200 bg-[#FAFAFA] overflow-y-auto sticky top-16 h-[calc(100vh-64px)] flex flex-col justify-between hidden md:flex scrollbar-hide">
-                <nav className="py-8 px-5">
-                    <p className="text-[11px] font-bold text-slate-400 uppercase tracking-widest mb-4 px-2">
+        <div className="flex min-h-[calc(100vh-64px)] max-w-345 mx-auto  bg-ez-white font-sans text-ez-body">
+            <aside className="w-72 shrink-0 border-r border-ez-border bg-white overflow-y-auto sticky top-16 h-[calc(100vh-64px)] flex flex-col justify-between hidden md:flex scrollbar-hide">
+                <nav className="py-8 px-6">
+                    <p className="ez-micro-label mb-4 px-2">
                         Industries
                     </p>
                     <ul className="space-y-1">
@@ -251,13 +247,13 @@ export default function SolutionsPage() {
                             <li key={ind.id}>
                                 <button
                                     onClick={() => setActiveId(ind.id)}
-                                    className={`w-full flex items-center gap-3 px-3 py-2.5 rounded-lg transition-all text-left ${activeId === ind.id
-                                        ? "bg-[#E9F2FE] text-[#1868DB] shadow-sm ring-1 ring-[#1868DB]/10"
-                                        : "text-slate-600 hover:bg-slate-200/50 hover:text-slate-900"
+                                    className={`w-full flex items-center gap-3 px-3 py-2.5 rounded transition-[background-color,color] duration-ez text-left outline-none ${activeId === ind.id
+                                        ? "bg-ez-ash text-ez-heading"
+                                        : "text-ez-secondary hover:bg-ez-ash hover:text-ez-heading"
                                         }`}
                                 >
-                                    <span className="text-lg leading-none grayscale-[20%]">{ind.emoji}</span>
-                                    <span className={`text-sm ${activeId === ind.id ? "font-bold" : "font-medium"}`}>
+                                    <span className="text-ez-lg leading-none grayscale opacity-80">{ind.emoji}</span>
+                                    <span className="text-ez-sm font-medium">
                                         {ind.label}
                                     </span>
                                 </button>
@@ -266,92 +262,81 @@ export default function SolutionsPage() {
                     </ul>
                 </nav>
 
-                {/* Bottom CTA */}
-                <div className="p-5">
-                    <div className="rounded-2xl bg-[#002072] p-5 text-white shadow-lg relative overflow-hidden group">
-                        {/* Subtle background glow */}
-                        <div className="absolute top-0 right-0 -mr-4 -mt-4 w-20 h-20 bg-[#1868DB] rounded-full blur-2xl opacity-50 transition-opacity group-hover:opacity-80" />
-
-                        <div className="relative z-10">
-                            <p className="text-sm font-bold mb-1.5">Not sure which fits?</p>
-                            <p className="text-xs text-blue-100 mb-5 leading-relaxed pr-2">
-                                Talk to our team and we'll map Kubee to your exact workflow.
-                            </p>
-                            <Link
-                                href="/contact"
-                                className="flex items-center justify-center gap-2 w-full text-xs font-bold bg-[#96F2A4] text-[#002072] rounded-xl py-2.5 hover:bg-[#7ce28b] hover:shadow-md transition-all active:scale-[0.98]"
-                            >
-                                Book a call
-                                <svg className="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M14 5l7 7m0 0l-7 7m7-7H3" />
-                                </svg>
-                            </Link>
-                        </div>
-                    </div>
+                {/* Bottom CTA (Flat, no gradients/shadows) */}
+                <div className="p-6 border-t border-ez-border bg-ez-ash">
+                    <p className="text-ez-base font-medium text-ez-heading mb-1.5">Not sure which fits?</p>
+                    <p className="text-ez-sm text-ez-secondary mb-5 leading-relaxed pr-2">
+                        Talk to our team and we'll map Kubee to your exact workflow.
+                    </p>
+                    <Link
+                        href="/contact"
+                        className="ez-btn ez-btn-secondary w-full"
+                    >
+                        Book a call
+                    </Link>
                 </div>
             </aside>
 
             {/* ── Main content ── */}
             <main className="flex-1 overflow-y-auto bg-white">
-                <div className="max-w-4xl mx-auto px-8 py-12 lg:px-16 lg:py-16 animate-in fade-in slide-in-from-bottom-4 duration-500" key={industry.id}>
+                <div className="max-w-4xl mx-auto px-8 py-16 lg:px-16 lg:py-24 step-fade" key={industry.id}>
 
                     {/* Eyebrow + Headline */}
-                    <div className="mb-10">
-                        <p className="inline-flex items-center gap-1.5 text-[11px] font-bold text-[#1868DB] uppercase tracking-widest mb-4 bg-blue-50 px-2.5 py-1 rounded-md">
-                            <span className="w-1.5 h-1.5 rounded-full bg-[#1868DB]" />
+                    <div className="mb-12">
+                        <p className="ez-micro-label text-ez-secondary mb-4">
                             {industry.eyebrow}
                         </p>
-                        <h1 className="text-4xl sm:text-5xl font-extrabold text-slate-900 mb-5 tracking-tight leading-[1.1]">
+                        <h1 className="text-[40px] sm:text-[48px] font-medium text-ez-heading mb-6 tracking-normal leading-tight">
                             {industry.headline}
                         </h1>
-                        <p className="text-lg text-slate-600 leading-relaxed max-w-2xl">
+                        <p className="text-ez-md text-ez-secondary leading-relaxed max-w-2xl">
                             {industry.description}
                         </p>
                     </div>
 
                     {/* Stats bar */}
-                    <div className="flex flex-wrap gap-8 sm:gap-16 mb-14 py-8 border-y border-slate-100 bg-slate-50/50 px-6 rounded-2xl">
+                    <div className="flex flex-wrap gap-8 sm:gap-16 mb-16 py-8 border-y border-ez-border bg-white">
                         {industry.stats.map((s) => (
                             <div key={s.label}>
-                                <p className="text-3xl font-extrabold text-[#1868DB] tracking-tight">{s.value}</p>
-                                <p className="text-sm font-medium text-slate-500 mt-1 uppercase tracking-wider">{s.label}</p>
+                                <p className="text-[32px] font-medium text-ez-heading leading-none">{s.value}</p>
+                                <p className="ez-micro-label text-ez-secondary mt-3">{s.label}</p>
                             </div>
                         ))}
                     </div>
 
-                    {/* Pain → Solution (Upgraded UX) */}
-                    <div className="mb-14">
-                        <h2 className="text-xl font-bold text-slate-900 mb-6">
+                    {/* Pain → Solution (Minimal layout, no colored backgrounds) */}
+                    <div className="mb-16">
+                        <h2 className="text-ez-xl font-medium text-ez-heading mb-6">
                             The Kubee Transformation
                         </h2>
-                        <div className="flex flex-col gap-3">
+                        <div className="flex flex-col gap-4">
                             {industry.pains.map((p, idx) => (
-                                <div key={idx} className="flex flex-col sm:flex-row items-stretch sm:items-center p-1.5 bg-slate-50 rounded-xl border border-slate-100">
+                                <div key={idx} className="grid grid-cols-1 sm:grid-cols-[1fr_auto_1fr] gap-4 items-center">
                                     {/* Bad */}
-                                    <div className="flex-1 flex items-center gap-3 px-4 py-3 bg-white rounded-lg border border-slate-100/50 shadow-sm">
-                                        <div className="w-6 h-6 rounded-full bg-red-100 text-red-600 flex items-center justify-center shrink-0">
-                                            <svg className="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={3} d="M6 18L18 6M6 6l12 12" />
+                                    <div className="flex items-start gap-3 p-4 border border-ez-border bg-ez-ash h-full">
+                                        <div className="text-ez-muted mt-0.5 shrink-0">
+                                            <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth="1.5">
+                                                <path strokeLinecap="round" strokeLinejoin="round" d="M6 18L18 6M6 6l12 12" />
                                             </svg>
                                         </div>
-                                        <span className="text-sm font-medium text-slate-600">{p.bad}</span>
+                                        <span className="text-ez-sm text-ez-secondary">{p.bad}</span>
                                     </div>
 
                                     {/* Arrow */}
-                                    <div className="px-4 py-2 sm:py-0 text-slate-300 flex justify-center rotate-90 sm:rotate-0">
-                                        <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
+                                    <div className="text-ez-muted flex justify-center rotate-90 sm:rotate-0">
+                                        <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth="1.5">
+                                            <path strokeLinecap="round" strokeLinejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3" />
                                         </svg>
                                     </div>
 
                                     {/* Good */}
-                                    <div className="flex-1 flex items-center gap-3 px-4 py-3 bg-white rounded-lg border border-green-100 shadow-sm ring-1 ring-green-500/5">
-                                        <div className="w-6 h-6 rounded-full bg-green-100 text-green-600 flex items-center justify-center shrink-0">
-                                            <svg className="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={3} d="M5 13l4 4L19 7" />
+                                    <div className="flex items-start gap-3 p-4 border border-ez-border bg-white h-full">
+                                        <div className="text-ez-primary mt-0.5 shrink-0">
+                                            <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth="1.5">
+                                                <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
                                             </svg>
                                         </div>
-                                        <span className="text-sm font-bold text-slate-900">{p.good}</span>
+                                        <span className="text-ez-sm font-medium text-ez-heading">{p.good}</span>
                                     </div>
                                 </div>
                             ))}
@@ -359,43 +344,42 @@ export default function SolutionsPage() {
                     </div>
 
                     {/* Feature cards */}
-                    <div className="mb-14">
-                        <h2 className="text-xl font-bold text-slate-900 mb-6">
+                    <div className="mb-16">
+                        <h2 className="text-ez-xl font-medium text-ez-heading mb-6">
                             Tailored capabilities
                         </h2>
-                        <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
+                        <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
                             {industry.features.map((f) => (
                                 <div
                                     key={f.title}
-                                    className="group bg-white border border-slate-200 rounded-2xl p-6 shadow-sm hover:shadow-md hover:border-[#1868DB]/40 hover:-translate-y-1 transition-all duration-300 cursor-default"
+                                    className="bg-white border border-ez-border p-6 hover:border-ez-subtle transition-[border-color] duration-ez cursor-default"
                                 >
-                                    <div className="w-10 h-10 rounded-xl bg-blue-50 border border-blue-100 flex items-center justify-center mb-4 group-hover:scale-110 transition-transform duration-300">
-                                        <span className="text-xl leading-none block">{f.icon}</span>
+                                    <div className="w-10 h-10 border border-ez-border bg-ez-ash flex items-center justify-center mb-5 text-ez-heading">
+                                        <span className="text-xl leading-none block grayscale opacity-80">{f.icon}</span>
                                     </div>
-                                    <p className="text-base font-bold text-slate-900 mb-2">{f.title}</p>
-                                    <p className="text-sm text-slate-500 leading-relaxed">{f.desc}</p>
+                                    <p className="text-ez-base font-medium text-ez-heading mb-2">{f.title}</p>
+                                    <p className="text-ez-sm text-ez-secondary leading-relaxed">{f.desc}</p>
                                 </div>
                             ))}
                         </div>
                     </div>
 
                     {/* CTA row */}
-                    <div className="flex flex-col sm:flex-row items-center gap-5 pt-6 border-t border-slate-200">
+                    <div className="flex flex-col sm:flex-row items-center gap-6 pt-8 border-t border-ez-border">
                         <Link
                             href="/contact"
-                            className="w-full sm:w-auto inline-flex items-center justify-center gap-2 bg-[#1868DB] hover:bg-[#1253b2] text-white text-sm font-bold px-7 py-3.5 rounded-xl transition-all hover:shadow-lg hover:shadow-blue-500/20 active:scale-[0.98]"
+                            className="ez-btn ez-btn-primary px-8 w-full sm:w-auto"
                         >
                             Request a Demo
-                            <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M17 8l4 4m0 0l-4 4m4-4H3" />
-                            </svg>
                         </Link>
                         <Link
                             href={industry.ctaGuide}
-                            className="text-sm font-semibold text-slate-600 hover:text-[#1868DB] transition-colors inline-flex items-center gap-1 group"
+                            className="text-ez-sm font-medium text-ez-secondary hover:text-ez-primary transition-colors duration-ez inline-flex items-center gap-1.5 outline-none"
                         >
                             Explore the full guide
-                            <span className="group-hover:translate-x-1 transition-transform">→</span>
+                            <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth="1.5">
+                                <path strokeLinecap="round" strokeLinejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3" />
+                            </svg>
                         </Link>
                     </div>
 

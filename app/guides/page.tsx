@@ -207,17 +207,17 @@ export default function GuidesPage() {
     }
 
     return (
-        <div className="bg-white font-sans">
+        <div className="bg-ez-white font-sans min-h-screen">
 
             {/* Split Content Layout */}
-            <div className="max-w-7xl mx-auto flex flex-col md:flex-row px-4 sm:px-6 lg:px-8 py-10 md:py-12 gap-8 lg:gap-16">
+            <div className="max-w-[1383px] mx-auto flex flex-col md:flex-row px-6 lg:px-10 py-10 md:py-16 gap-8 lg:gap-16">
 
                 {/* Sidebar */}
                 <aside className="w-full md:w-64 shrink-0 md:sticky md:top-24 h-auto md:h-[calc(100vh-24rem)] overflow-y-auto hidden md:block scrollbar-hide">
                     <nav className="pb-8">
                         {sidebarSections.map((section, idx) => (
                             <div key={section.heading} className={idx !== 0 ? "mt-8" : ""}>
-                                <p className="text-xl font-bold text-slate-900 tracking-wider mb-3 px-3 underline decoration-gray-700 decoration-2 underline-offset-8">
+                                <p className="ez-text-base font-bold mb-3 px-3">
                                     {section.heading}
                                 </p>
                                 <ul className="space-y-1">
@@ -227,29 +227,29 @@ export default function GuidesPage() {
                                                 <>
                                                     <button
                                                         onClick={() => toggleGroup(item.label)}
-                                                        className="w-full flex items-center justify-between px-3 py-2 text-sm font-medium text-slate-700 hover:bg-slate-100 rounded-lg transition-colors"
+                                                        className="w-full flex items-center justify-between px-3 py-2 text-ez-sm font-medium text-ez-secondary hover:bg-ez-ash hover:text-ez-heading rounded transition-colors duration-ez outline-none"
                                                     >
                                                         <span>{item.label}</span>
                                                         <svg
-                                                            className={`w-4 h-4 text-slate-400 transition-transform duration-200 ${expandedGroups[item.label] ? "rotate-90" : ""}`}
+                                                            className={`w-4 h-4 text-ez-muted transition-transform duration-ez ${expandedGroups[item.label] ? "rotate-90" : ""}`}
                                                             fill="none"
                                                             stroke="currentColor"
                                                             viewBox="0 0 24 24"
                                                         >
-                                                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                                                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M9 5l7 7-7 7" />
                                                         </svg>
                                                     </button>
 
                                                     {/* Sub-items */}
                                                     {expandedGroups[item.label] && (
-                                                        <ul className="mt-1 mb-2 space-y-1 border-l-2 border-slate-100 ml-4 pl-3">
+                                                        <ul className="mt-1 mb-2 space-y-1 border-l border-ez-border ml-4 pl-3">
                                                             {item.sub.map((sub) => (
                                                                 <li key={sub}>
                                                                     <button
                                                                         onClick={() => setActiveItem(sub)}
-                                                                        className={`w-full text-left px-3 py-1.5 text-sm rounded-md transition-colors ${activeItem === sub
-                                                                            ? "text-blue-700 bg-blue-50 font-semibold"
-                                                                            : "text-slate-600 hover:text-slate-900 hover:bg-slate-100"
+                                                                        className={`w-full text-left px-3 py-1.5 text-ez-sm font-medium rounded transition-colors duration-ez outline-none ${activeItem === sub
+                                                                            ? "text-ez-primary bg-ez-ash"
+                                                                            : "text-ez-secondary hover:text-ez-heading hover:bg-ez-ash"
                                                                             }`}
                                                                     >
                                                                         {sub}
@@ -262,9 +262,9 @@ export default function GuidesPage() {
                                             ) : (
                                                 <button
                                                     onClick={() => setActiveItem(item.label)}
-                                                    className={`w-full text-left px-3 py-2 text-sm rounded-lg transition-colors font-medium ${activeItem === item.label
-                                                        ? "text-blue-700 bg-blue-50"
-                                                        : "text-slate-700 hover:bg-slate-100"
+                                                    className={`w-full text-left px-3 py-2 text-ez-sm font-medium rounded transition-colors duration-ez outline-none ${activeItem === item.label
+                                                        ? "text-ez-primary bg-ez-ash"
+                                                        : "text-ez-secondary hover:text-ez-heading hover:bg-ez-ash"
                                                         }`}
                                                 >
                                                     {item.label}
@@ -280,49 +280,51 @@ export default function GuidesPage() {
 
                 {/* Main Content Area */}
                 <main className="flex-1 max-w-3xl pb-20">
-                    <h2 className="text-3xl font-extrabold text-slate-900 mb-8 tracking-tight">
+                    <h2 className="text-ez-hero font-medium text-ez-heading mb-10 leading-tight">
                         {content.title}
                     </h2>
 
                     <div className="space-y-12">
                         {content.sections.map((sec, i) => (
                             <section key={i} className="scroll-mt-24">
-                                <h3 className="text-xl font-bold text-slate-900 mb-4">{sec.heading}</h3>
+                                <h3 className="text-ez-lg font-medium text-ez-heading mb-4">{sec.heading}</h3>
 
                                 {sec.showHero ? (
                                     <div className="flex flex-col sm:flex-row items-start gap-8">
                                         <div className="flex-1">
-                                            <p className="text-base text-slate-600 leading-relaxed mb-4">
+                                            <p className="text-ez-base text-ez-body leading-normal mb-4">
                                                 {sec.body}
                                             </p>
-                                            <a href="/signup" className="inline-flex items-center text-sm font-semibold text-blue-600 hover:text-blue-700 transition-colors">
+                                            <a href="/signup" className="inline-flex items-center text-ez-sm font-medium text-ez-primary hover:text-ez-primary-hover transition-colors duration-ez outline-none">
                                                 Sign up for a live demo
                                                 <svg className="w-4 h-4 ml-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M14 5l7 7m0 0l-7 7m7-7H3" />
+                                                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M14 5l7 7m0 0l-7 7m7-7H3" />
                                                 </svg>
                                             </a>
                                         </div>
 
-                                        {/* Cleaned up Hero Illustration */}
-                                        <div className="shrink-0 w-full sm:w-56 h-36 rounded-xl border border-slate-200 bg-slate-50 flex items-center justify-center overflow-hidden shadow-sm">
+                                        {/* Cleaned up Hero Illustration - Flat, monochrome + primary */}
+                                        <div className="shrink-0 w-full sm:w-56 h-36 bg-ez-ash border border-ez-border flex items-center justify-center overflow-hidden">
                                             <svg viewBox="0 0 160 100" className="w-full h-full p-4" fill="none">
-                                                <rect x="20" y="20" width="50" height="60" rx="4" fill="#3B82F6" opacity="0.1" />
-                                                <rect x="24" y="24" width="42" height="8" rx="2" fill="#3B82F6" opacity="0.6" />
-                                                <rect x="24" y="36" width="42" height="4" rx="1" fill="#3B82F6" opacity="0.4" />
-                                                <rect x="24" y="44" width="30" height="4" rx="1" fill="#3B82F6" opacity="0.4" />
-                                                <rect x="24" y="52" width="36" height="4" rx="1" fill="#3B82F6" opacity="0.4" />
-                                                <rect x="24" y="60" width="20" height="4" rx="1" fill="#3B82F6" opacity="0.4" />
-                                                <rect x="90" y="30" width="50" height="50" rx="4" fill="#0F172A" opacity="0.05" />
-                                                <rect x="96" y="36" width="38" height="6" rx="2" fill="#0F172A" opacity="0.3" />
-                                                <rect x="96" y="47" width="38" height="4" rx="1" fill="#0F172A" opacity="0.2" />
-                                                <rect x="96" y="55" width="26" height="4" rx="1" fill="#0F172A" opacity="0.2" />
-                                                <circle cx="125" cy="68" r="8" fill="#10B981" />
-                                                <path d="M122 68l2 2 4-4" stroke="#ffffff" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+                                                <rect x="20" y="20" width="50" height="60" fill="var(--ez-color-primary)" opacity="0.1" />
+                                                <rect x="24" y="24" width="42" height="8" fill="var(--ez-color-primary)" opacity="0.6" />
+                                                <rect x="24" y="36" width="42" height="4" fill="var(--ez-color-primary)" opacity="0.4" />
+                                                <rect x="24" y="44" width="30" height="4" fill="var(--ez-color-primary)" opacity="0.4" />
+                                                <rect x="24" y="52" width="36" height="4" fill="var(--ez-color-primary)" opacity="0.4" />
+                                                <rect x="24" y="60" width="20" height="4" fill="var(--ez-color-primary)" opacity="0.4" />
+
+                                                <rect x="90" y="30" width="50" height="50" fill="var(--ez-color-carbon)" opacity="0.05" />
+                                                <rect x="96" y="36" width="38" height="6" fill="var(--ez-color-carbon)" opacity="0.3" />
+                                                <rect x="96" y="47" width="38" height="4" fill="var(--ez-color-carbon)" opacity="0.2" />
+                                                <rect x="96" y="55" width="26" height="4" fill="var(--ez-color-carbon)" opacity="0.2" />
+
+                                                <circle cx="125" cy="68" r="8" fill="var(--ez-color-primary)" />
+                                                <path d="M122 68l2 2 4-4" stroke="#ffffff" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
                                             </svg>
                                         </div>
                                     </div>
                                 ) : (
-                                    <p className="text-base text-slate-600 leading-relaxed">{sec.body}</p>
+                                    <p className="text-ez-base text-ez-body leading-normal">{sec.body}</p>
                                 )}
                             </section>
                         ))}
@@ -330,23 +332,21 @@ export default function GuidesPage() {
 
                     {/* Intro Video Card */}
                     {activeItem === "Overview" && (
-                        <section className="mt-14 pt-8 border-t border-slate-200">
-                            <h3 className="text-lg font-bold text-slate-900 mb-4">Video Overview</h3>
-                            <div className="relative rounded-2xl overflow-hidden bg-slate-900 aspect-video max-w-2xl cursor-pointer group shadow-lg ring-1 ring-slate-900/5">
-                                {/* Gradient overlay */}
-                                <div className="absolute inset-0 bg-gradient-to-tr from-blue-900/60 to-transparent opacity-80" />
+                        <section className="mt-14 pt-8 border-t border-ez-border">
+                            <h3 className="text-ez-lg font-medium text-ez-heading mb-4">Video Overview</h3>
+                            <div className="relative bg-ez-carbon border border-ez-border aspect-video max-w-2xl cursor-pointer group overflow-hidden">
 
                                 <div className="absolute inset-0 flex flex-col items-center justify-center gap-4">
-                                    <div className="w-16 h-16 rounded-full bg-white/20 backdrop-blur-md flex items-center justify-center group-hover:bg-white/30 group-hover:scale-105 transition-all duration-300">
-                                        <svg className="w-7 h-7 text-white ml-1" fill="currentColor" viewBox="0 0 24 24">
+                                    <div className="w-16 h-16 rounded bg-white flex items-center justify-center group-hover:bg-ez-ash transition-colors duration-ez">
+                                        <svg className="w-6 h-6 text-ez-heading ml-1" fill="currentColor" viewBox="0 0 24 24">
                                             <path d="M8 5v14l11-7z" />
                                         </svg>
                                     </div>
                                 </div>
 
                                 {/* Watermark */}
-                                <div className="absolute bottom-4 left-4 flex items-center gap-2 opacity-90">
-                                    <span className="text-white text-sm font-bold tracking-wide shadow-sm">Kubee</span>
+                                <div className="absolute bottom-4 left-4 flex items-center gap-2">
+                                    <span className="text-white/50 text-ez-sm font-medium tracking-[0.1em] uppercase">Kubee</span>
                                 </div>
                             </div>
                         </section>

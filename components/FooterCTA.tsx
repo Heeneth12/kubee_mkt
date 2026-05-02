@@ -1,140 +1,139 @@
 "use client";
 
 import { useState } from "react";
-import { motion, AnimatePresence } from "framer-motion";
+import { AnimatePresence, motion } from "framer-motion";
 
-/* ─────────────────────────────────────────────
-   Testimonial Data
-────────────────────────────────────────────── */
 const TESTIMONIALS = [
   {
     id: 1,
-    quote: "Avenue lets us easily monitor our increasingly complex system. From customer activity and order inaccuracy to fraud reviews and QA, Avenue keeps our team alert to what's important, at all times",
+    quote: "Kubee lets us easily monitor our increasingly complex inventory. From purchase orders and stock inaccuracy to vendor payments and QA, Kubee keeps our team alert to what's important, at all times.",
     author: "Bowie Cheung",
     role: "Co-Founder & CEO",
     company: "Pepper",
   },
   {
     id: 2,
-    quote: "Since implementing Avenue, our incident response time has dropped by 40%. The ability to catch anomalies before they become critical issues has been a game-changer for our operations team.",
+    quote: "Since implementing Kubee, our stockout incidents dropped by 40%. The ability to catch reorder points before they become critical has been a game-changer for our operations team.",
     author: "Sarah Jenkins",
-    role: "VP of Engineering",
+    role: "VP of Operations",
     company: "Acme Corp",
   },
   {
     id: 3,
-    quote: "The visual dashboards and automated alerting mean we no longer have to stare at logs all day. Avenue gives us peace of mind knowing that our data pipelines are running smoothly.",
+    quote: "The AI-powered forecasting and automated reordering mean we no longer have to guess stock levels. Kubee gives us peace of mind knowing our supply chain is always running smoothly.",
     author: "David Chen",
-    role: "Data Operations Lead",
+    role: "Inventory Lead",
     company: "Nexus",
-  }
+  },
 ];
 
-export default function TestimonialsSection() {
+export default function FooterCTA() {
   const [currentIndex, setCurrentIndex] = useState(0);
 
-  const handleNext = () => {
-    setCurrentIndex((prev) => (prev + 1) % TESTIMONIALS.length);
-  };
+  const handleNext = () => setCurrentIndex((prev) => (prev + 1) % TESTIMONIALS.length);
+  const handlePrev = () => setCurrentIndex((prev) => (prev - 1 + TESTIMONIALS.length) % TESTIMONIALS.length);
 
-  const handlePrev = () => {
-    setCurrentIndex((prev) => (prev - 1 + TESTIMONIALS.length) % TESTIMONIALS.length);
-  };
-
-  // Calculate progress bar width based on current slide
-  const progressPercentage = ((currentIndex + 1) / TESTIMONIALS.length) * 100;
+  const progressPct = ((currentIndex + 1) / TESTIMONIALS.length) * 100;
 
   return (
-    <section className="relative w-full bg-brand-blue py-16 overflow-hidden font-sans">
+    <section className="bg-ez-carbon py-20 md:py-28 overflow-hidden">
       <div className="max-w-4xl mx-auto px-6">
 
+        {/* Eyebrow */}
+        <p className="ez-micro-label text-white/40 text-center mb-4">What people say</p>
+
         {/* Heading */}
-        <h2 className="text-2xl md:text-4xl font-bold text-white text-center mb-16 leading-tight tracking-tight">
-          What people say about Kubee
+        <h2
+          className="font-medium text-white text-center mb-16 leading-tight"
+          style={{ fontSize: "32px", lineHeight: "1.2" }}
+        >
+          Trusted by teams across India
         </h2>
 
-        {/* Carousel Container */}
+        {/* Testimonial card */}
         <div className="relative max-w-3xl mx-auto">
-
-          {/* Background Layer (Slightly wider blue card behind white card) */}
-
-          {/* Geometric Accent: Left Light Blue Square */}
-          <div className="absolute -left-10 bottom-6 w-14 h-14 bg-[#93C5FD] rotate-[-15deg] z-20 shadow-sm" />
-
-          {/* Geometric Accent: Right Yellow Rectangle */}
-          <div className="absolute -right-3 top-10 w-8 h-12 bg-[#FDE047] rotate-[10deg] z-20 shadow-sm" />
-
-          {/* Main White Card */}
-          <div className="relative bg-white rounded-lg px-10 py-12 md:px-14 md:py-14 z-10 shadow-[0_10px_40px_rgba(0,0,0,0.1)] min-h-[280px] flex flex-col justify-center">
+          <div className="bg-white p-10 md:p-14 min-h-[240px] flex flex-col justify-center">
             <AnimatePresence mode="wait">
               <motion.div
                 key={currentIndex}
-                initial={{ opacity: 0, x: 20 }}
+                initial={{ opacity: 0, x: 16 }}
                 animate={{ opacity: 1, x: 0 }}
-                exit={{ opacity: 0, x: -20 }}
-                transition={{ duration: 0.3, ease: "easeInOut" }}
+                exit={{ opacity: 0, x: -16 }}
+                transition={{ duration: 0.33, ease: [0.5, 0, 0, 0.75] }}
                 className="flex flex-col h-full justify-between gap-8"
               >
-                {/* Quote */}
-                <p className="text-[#334155] text-[15px] md:text-[17px] leading-[1.8] font-medium">
-                  "{TESTIMONIALS[currentIndex].quote}"
+                <p className="text-ez-md text-ez-body leading-relaxed">
+                  &ldquo;{TESTIMONIALS[currentIndex].quote}&rdquo;
                 </p>
-
-                {/* Author & Company */}
-                <div className="flex items-end justify-between mt-auto pt-4">
+                <div className="flex items-end justify-between pt-4 border-t border-ez-border">
                   <div>
-                    <h4 className="text-[#1E293B] font-bold text-[15px] mb-0.5">
+                    <h4 className="font-medium text-ez-base text-ez-heading mb-0.5">
                       {TESTIMONIALS[currentIndex].author}
                     </h4>
-                    <p className="text-[#64748B] text-[11px] font-medium">
+                    <p className="text-ez-xs text-ez-secondary">
                       {TESTIMONIALS[currentIndex].role}
                     </p>
                   </div>
-                  <div className="text-[#334155] font-bold text-xl tracking-tight">
+                  <span className="font-medium text-ez-lg text-ez-heading">
                     {TESTIMONIALS[currentIndex].company}
-                  </div>
+                  </span>
                 </div>
               </motion.div>
             </AnimatePresence>
           </div>
         </div>
 
-        {/* Controls (Arrows & Progress Bar) */}
+        {/* Controls */}
         <div className="flex items-center justify-center gap-6 mt-8 max-w-[400px] mx-auto">
-          {/* Left Arrow */}
           <button
             onClick={handlePrev}
-            className="text-white/70 hover:text-white transition-colors p-2"
+            className="text-white/40 hover:text-white transition-colors duration-ez p-2"
             aria-label="Previous testimonial"
           >
-            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
-              <line x1="19" y1="12" x2="5" y2="12"></line>
-              <polyline points="12 19 5 12 12 5"></polyline>
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+              <line x1="19" y1="12" x2="5" y2="12" />
+              <polyline points="12 19 5 12 12 5" />
             </svg>
           </button>
 
-          {/* Progress Bar Track */}
-          <div className="flex-1 h-[1px] bg-white/20 relative overflow-hidden rounded-full">
-            {/* Progress Indicator */}
+          <div className="flex-1 h-px bg-white/10 relative overflow-hidden">
             <motion.div
               className="absolute left-0 top-0 bottom-0 bg-white"
               initial={{ width: 0 }}
-              animate={{ width: `${progressPercentage}%` }}
-              transition={{ duration: 0.3, ease: "easeInOut" }}
+              animate={{ width: `${progressPct}%` }}
+              transition={{ duration: 0.33, ease: [0.5, 0, 0, 0.75] }}
             />
           </div>
 
-          {/* Right Arrow */}
           <button
             onClick={handleNext}
-            className="text-white/70 hover:text-white transition-colors p-2"
+            className="text-white/40 hover:text-white transition-colors duration-ez p-2"
             aria-label="Next testimonial"
           >
-            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
-              <line x1="5" y1="12" x2="19" y2="12"></line>
-              <polyline points="12 5 19 12 12 19"></polyline>
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+              <line x1="5" y1="12" x2="19" y2="12" />
+              <polyline points="12 5 19 12 12 19" />
             </svg>
           </button>
+        </div>
+
+        {/* CTA */}
+        <div className="mt-16 text-center">
+          <h3 className="font-medium text-white mb-3" style={{ fontSize: "28px", lineHeight: "1.2" }}>
+            Ready to take control of your inventory?
+          </h3>
+          <p className="text-ez-md text-white/50 mb-8 max-w-md mx-auto leading-relaxed">
+            Join thousands of Indian businesses already running smarter operations with Kubee.
+          </p>
+          <div className="flex items-center justify-center gap-3">
+            <button className="ez-btn ez-btn-primary">Start Free Trial →</button>
+            <button
+              className="ez-btn border border-white/20 text-white/70 hover:border-white/40 hover:text-white transition-[border-color,color] duration-ez"
+              style={{ background: "transparent" }}
+            >
+              Talk to Sales
+            </button>
+          </div>
         </div>
 
       </div>
