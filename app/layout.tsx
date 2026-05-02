@@ -15,9 +15,26 @@ export const metadata: Metadata = {
     "Real-time inventory tracking, AI-powered forecasting, and automated reordering. Built for Indian businesses to scale operations effortlessly.",
   metadataBase: new URL("https://kubee.in"),
   openGraph: {
+    title: "Kubee — Inventory Management for Indian Businesses",
+    description: "Real-time inventory tracking, AI-powered forecasting, and automated reordering.",
+    url: "https://kubee.in",
     siteName: "Kubee",
+    images: [
+      {
+        url: "/og-image.png",
+        width: 1200,
+        height: 630,
+        alt: "Kubee Inventory Management",
+      },
+    ],
     type: "website",
     locale: "en_IN",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Kubee — Inventory Management",
+    description: "Built for Indian businesses to scale operations effortlessly.",
+    images: ["/og-image.png"],
   },
 };
 
