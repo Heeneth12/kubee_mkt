@@ -21,6 +21,214 @@ export type GuideEntry = {
 
 export const guides: GuideEntry[] = [
   {
+    key: "Overview",
+    title: "Welcome to Kubee",
+    sections: [
+      {
+        heading: "Everything you'll need to know",
+        showHero: true,
+        blocks: [
+          {
+            type: "paragraph",
+            text: "Whether you've used it or not, we'll help you choose the right features for your business, set it up, and adopt best practices. So grab your team and let's go!",
+          },
+        ],
+      },
+      {
+        heading: "What is Kubee?",
+        blocks: [
+          {
+            type: "paragraph",
+            text: "Kubee is an industry-leading inventory management tool that brings every team together to plan, track, and deliver any type of product with confidence. It's the single source of truth for your organisation, empowering teams with the context to move quickly while staying connected to the greater business goal. Whether you're managing everyday tasks in smaller or complex projects, this is where teams and AI come together to drive better outcomes, faster.",
+          },
+        ],
+      },
+      {
+        heading: "Why teams choose Kubee",
+        blocks: [
+          {
+            type: "list",
+            ordered: false,
+            items: [
+              "Real-time stock visibility across all locations",
+              "AI-powered demand forecasting",
+              "GST-ready invoicing and compliance",
+              "Works for solo operators and enterprise teams alike",
+              "Built in India, for Indian businesses",
+            ],
+          },
+        ],
+      },
+      {
+        heading: "What you can do with Kubee",
+        blocks: [
+          {
+            type: "callout",
+            variant: "tip",
+            text: "Start with what you have — even a partial catalog is enough to get going.",
+          },
+          {
+            type: "list",
+            ordered: true,
+            items: [
+              "Track stock across warehouses",
+              "Create and send purchase orders to suppliers",
+              "Receive goods with GRNs (Goods Receipt Notes)",
+              "Invoice your customers",
+              "Analyse reports and forecast demand",
+            ],
+          },
+        ],
+      },
+    ],
+  },
+  {
+    key: "Quick Start",
+    title: "Quick Start Guide",
+    sections: [
+      {
+        heading: "Before you begin",
+        blocks: [
+          {
+            type: "paragraph",
+            text: "Kubee is designed for fast onboarding — most teams are up and running within an afternoon. Before you start, make sure you have the following:",
+          },
+          {
+            type: "list",
+            ordered: false,
+            items: [
+              "A modern browser (Chrome, Firefox, Safari, or Edge)",
+              "A valid business email address",
+              "Your GSTIN (optional — you can add this later)",
+              "A product catalog or list of SKUs (optional — you can import this later)",
+            ],
+          },
+        ],
+      },
+      {
+        heading: "Create your account",
+        blocks: [
+          {
+            type: "steps",
+            items: [
+              {
+                title: "Go to kubee.in/signup",
+                body: "Open the Kubee signup page in your browser.",
+              },
+              {
+                title: "Enter your details",
+                body: "Fill in your name, business email address, and phone number.",
+              },
+              {
+                title: "Verify your email",
+                body: "Check your inbox for the OTP Kubee sends you. Enter it on the verification screen.",
+              },
+              {
+                title: "Set your password",
+                body: "Choose a strong password, then select your business type (e.g. Retail, Distribution, Manufacturing).",
+              },
+              {
+                title: "You're in",
+                body: "Your Kubee workspace is ready. You'll land on your dashboard.",
+              },
+            ],
+          },
+        ],
+      },
+      {
+        heading: "Log in",
+        blocks: [
+          {
+            type: "paragraph",
+            text: "Once your account is created, you can always return to your workspace via the login page.",
+          },
+          {
+            type: "link-card",
+            href: "/login",
+            label: "Sign in to Kubee",
+            description: "Return to your workspace at any time",
+          },
+        ],
+      },
+      {
+        heading: "Set up your first inventory",
+        blocks: [
+          {
+            type: "steps",
+            items: [
+              {
+                title: "Go to Inventory → Products",
+                body: "Click Add Product in the top-right corner of the Products screen.",
+              },
+              {
+                title: "Fill in product details",
+                body: "Enter the SKU, product name, unit of measure (e.g. pcs, kg, box), and HSN code.",
+              },
+              {
+                title: "Set a reorder threshold",
+                body: "Enter the minimum stock level that should trigger a reorder alert — for example, 50 units.",
+              },
+              {
+                title: "Assign to a warehouse",
+                body: "Select the warehouse or location where this stock is held.",
+              },
+              {
+                title: "Save",
+                body: "Your first item is now live in the system. Repeat for each product in your catalog.",
+              },
+            ],
+          },
+        ],
+      },
+      {
+        heading: "Invite your team",
+        blocks: [
+          {
+            type: "paragraph",
+            text: "Go to Settings → Team and enter your colleagues' email addresses. They'll receive an invite to join your workspace.",
+          },
+          {
+            type: "callout",
+            variant: "info",
+            text: "Each user gets role-based access — warehouse staff won't see financial reports unless you explicitly grant it.",
+          },
+        ],
+      },
+      {
+        heading: "What's next",
+        blocks: [
+          {
+            type: "link-card",
+            href: "/guides",
+            label: "Explore Resources",
+            description: "API docs, import templates, and video walkthroughs",
+          },
+          {
+            type: "link-card",
+            href: "/guides",
+            label: "Understand the Dashboard",
+            description: "Your real-time inventory command centre",
+          },
+        ],
+      },
+    ],
+  },
+  {
+    key: "Resources",
+    title: "Resources",
+    sections: [
+      {
+        heading: "Documentation, templates & community",
+        blocks: [
+          {
+            type: "paragraph",
+            text: "Access our full API reference, downloadable import templates, video walkthroughs, and community forums. Everything you need to get the most out of Kubee.",
+          },
+        ],
+      },
+    ],
+  },
+  {
     key: "Dashboard",
     title: "Dashboard",
     sections: [
