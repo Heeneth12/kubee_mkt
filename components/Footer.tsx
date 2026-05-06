@@ -1,4 +1,6 @@
 import Link from "next/link";
+import Image from "next/image";
+import logo from "@/assets/images/Kubee_logo.png";
 
 const columns = [
   {
@@ -30,12 +32,15 @@ const columns = [
 export default function Footer() {
   return (
     <footer className="bg-ez-carbon text-white">
-      <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+      <div className="max-w-345 mx-auto px-6 lg:px-10 py-8">
         <div className="flex flex-col md:flex-row justify-between gap-10">
           {/* Brand */}
-          <div>
-            <div className="flex items-center gap-2 mb-3">
-              <span className="font-bold text-lg">Kubee</span>
+          <div className="flex flex-col">
+            <div className="flex items-center justify-center md:justify-start mb-3">
+              <Link href="/" className="flex items-center outline-none">
+                <Image src={logo} alt="Logo" width={36} height={36} />
+                <span className="font-bold text-xl">Kubee</span>
+              </Link>
             </div>
             <p className="text-sm text-white/50 max-w-50 leading-relaxed">
               Modern inventory management built for Indian businesses.

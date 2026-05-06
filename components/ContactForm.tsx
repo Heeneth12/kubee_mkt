@@ -88,7 +88,7 @@ const ArrowRight = () => (
 );
 
 export default function ContactPage() {
-  const [activeCard, setActiveCard] = useState<CardType>(null);
+  const [activeCard, setActiveCard] = useState<CardType>(CARDS[0].id);
   const [form, setForm] = useState<FormState>({
     firstName: "",
     lastName: "",
@@ -373,7 +373,7 @@ export default function ContactPage() {
         {/* Bottom CTA */}
         <div className="bg-ez-carbon flex flex-col sm:flex-row items-start sm:items-center justify-between rounded gap-6 px-8 py-10">
           <div>
-            <h2 className="text-[22px] font-medium text-white leading-tight mb-1">
+            <h2 className="text-[22px] font-medium text-white leading-tight">
               Let&apos;s get started on something great
             </h2>
             <p className="text-ez-sm text-white/50">Join 4,000+ teams already growing with Untitled.</p>
