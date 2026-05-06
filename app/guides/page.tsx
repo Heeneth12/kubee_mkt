@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import type { Metadata } from "next";
+import { guides, type GuideBlock } from "@/data/guides";
 
 const sidebarSections = [
     {
@@ -29,178 +29,13 @@ const sidebarSections = [
     },
 ];
 
-type ContentKey = string;
-
-const contentMap: Record<ContentKey, { title: string; sections: { heading: string; body: string; showHero?: boolean }[] }> = {
-    Overview: {
-        title: "Welcome to Kubee",
-        sections: [
-            {
-                heading: "Everything you'll need to know",
-                showHero: true,
-                body: "Whether you've used it or not, we'll help you choose the right features for your business, set it up, and adopt best practices. So grab your team and let's go!",
-            },
-            {
-                heading: "What is Kubee?",
-                body: "Kubee is an industry-leading inventory management tool that brings every team together to plan, track, and deliver any type of product with confidence. It's the single source of truth for your organisation, empowering teams with the context to move quickly while staying connected to the greater business goal. Whether you're managing everyday tasks in smaller or complex projects, this is where teams and AI come together to drive better outcomes, faster. Sign up for a live demo of Kubee.",
-            },
-        ],
-    },
-    "Quick Start": {
-        title: "Quick Start Guide",
-        sections: [
-            {
-                heading: "Set up in minutes",
-                body: "Kubee is designed for fast onboarding. Connect your existing catalogs, configure your warehouses, and invite your team — all within a single afternoon.",
-            },
-            {
-                heading: "Your first inventory",
-                body: "Start by creating a product catalog. Add SKUs, set reorder thresholds, and map suppliers. Kubee's AI will immediately begin learning your demand patterns.",
-            },
-        ],
-    },
-    Resources: {
-        title: "Resources",
-        sections: [
-            {
-                heading: "Documentation, templates & community",
-                body: "Access our full API reference, downloadable import templates, video walkthroughs, and community forums. Everything you need to get the most out of Kubee.",
-            },
-        ],
-    },
-    Dashboard: {
-        title: "Dashboard",
-        sections: [
-            {
-                heading: "Your command centre",
-                body: "The Kubee dashboard gives you a real-time view of inventory health, pending orders, low-stock alerts, and revenue trends — all on one screen.",
-            },
-        ],
-    },
-    "Stock Management": {
-        title: "Stock Management",
-        sections: [
-            {
-                heading: "Track every unit",
-                body: "Kubee's stock engine handles multi-warehouse tracking, batch/lot numbers, expiry dates, and FIFO/LIFO costing. Get notified before you run out.",
-            },
-        ],
-    },
-    Workflows: {
-        title: "Workflows",
-        sections: [
-            {
-                heading: "Automate your operations",
-                body: "Build custom approval chains, auto-reorder rules, and supplier notification flows. No code required — drag, drop, done.",
-            },
-        ],
-    },
-    Integrations: {
-        title: "Integrations",
-        sections: [
-            {
-                heading: "Connect the tools you already use",
-                body: "Kubee connects natively with Tally, Zoho Books, Shopify, WooCommerce, Amazon India, and 30+ other platforms. Two-way sync keeps everything in step.",
-            },
-        ],
-    },
-    "Reports & Analytics": {
-        title: "Reports & Analytics",
-        sections: [
-            {
-                heading: "Data-driven decisions",
-                body: "Generate sell-through reports, dead-stock alerts, supplier performance scorecards, and margin analyses. Export to Excel or share directly with stakeholders.",
-            },
-        ],
-    },
-    "AI Forecasting": {
-        title: "AI Forecasting",
-        sections: [
-            {
-                heading: "Predict demand before it happens",
-                body: "Kubee's forecasting engine analyses historical sales velocity, seasonality, and market signals to recommend optimal stock levels — reducing overstock by up to 30%.",
-            },
-        ],
-    },
-    Permissions: {
-        title: "Permissions",
-        sections: [
-            {
-                heading: "Role-based access control",
-                body: "Grant granular permissions to staff, warehouse managers, accountants, and read-only auditors. Every action is logged for compliance.",
-            },
-        ],
-    },
-    "GST & Taxes": {
-        title: "GST & Taxes",
-        sections: [
-            {
-                heading: "Built for India's tax landscape",
-                body: "Kubee auto-calculates CGST, SGST, and IGST on every transaction. Generate GST-ready invoices and file-ready reports in one click.",
-            },
-        ],
-    },
-    Navigation: {
-        title: "Navigation",
-        sections: [
-            {
-                heading: "Finding your way around",
-                body: "Learn keyboard shortcuts, the global search bar, and the command palette to move through Kubee at the speed of thought.",
-            },
-        ],
-    },
-    Automation: {
-        title: "Automation",
-        sections: [
-            {
-                heading: "Let Kubee do the work",
-                body: "Trigger purchase orders when stock dips below threshold, send WhatsApp alerts to suppliers, and auto-reconcile deliveries — all on autopilot.",
-            },
-        ],
-    },
-    Warehouses: {
-        title: "Warehouses",
-        sections: [
-            {
-                heading: "Multi-location inventory",
-                body: "Manage stock across multiple warehouses, retail stores, and fulfilment centres from a single view. Transfer stock between locations in seconds.",
-            },
-        ],
-    },
-    "Advanced Planning": {
-        title: "Advanced Planning",
-        sections: [
-            {
-                heading: "Enterprise-grade supply chain tools",
-                body: "Model seasonal purchasing plans, set up consignment agreements, and run what-if simulations before committing to large supplier contracts.",
-            },
-        ],
-    },
-    "Kubee Mobile": {
-        title: "Kubee Mobile",
-        sections: [
-            {
-                heading: "Inventory in your pocket",
-                body: "Scan barcodes, receive stock, approve purchase orders, and check alerts from the Kubee mobile app for iOS and Android.",
-            },
-        ],
-    },
-    "More about Kubee": {
-        title: "More about Kubee",
-        sections: [
-            {
-                heading: "Our story",
-                body: "Kubee was built in India, for India — by operators who lived through the pain of spreadsheet-based inventory. We're on a mission to make modern operations accessible to every business.",
-            },
-        ],
-    },
-};
+const guideMap = Object.fromEntries(guides.map((g) => [g.key, g]));
 
 export default function GuidesPage() {
-    const [activeItem, setActiveItem] = useState<ContentKey>("Overview");
+    const [activeItem, setActiveItem] = useState<string>("Overview");
     const [expandedGroups, setExpandedGroups] = useState<Record<string, boolean>>({ Inventory: true });
 
-    const content = contentMap[activeItem] ?? contentMap["Overview"];
+    const content = guideMap[activeItem] ?? guideMap["Overview"];
 
     function toggleGroup(label: string) {
         setExpandedGroups((prev) => ({ ...prev, [label]: !prev[label] }));
@@ -292,18 +127,24 @@ export default function GuidesPage() {
                                 {sec.showHero ? (
                                     <div className="flex flex-col sm:flex-row items-start gap-8">
                                         <div className="flex-1">
-                                            <p className="text-ez-base text-ez-body leading-normal mb-4">
-                                                {sec.body}
-                                            </p>
+                                            {sec.blocks[0]?.type === "paragraph" && (
+                                                <p className="text-ez-base text-ez-body leading-normal mb-4">
+                                                    {sec.blocks[0].text}
+                                                </p>
+                                            )}
                                             <a href="/signup" className="inline-flex items-center text-ez-sm font-medium text-ez-primary hover:text-ez-primary-hover transition-colors duration-ez outline-none">
                                                 Sign up for a live demo
                                                 <svg className="w-4 h-4 ml-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M14 5l7 7m0 0l-7 7m7-7H3" />
                                                 </svg>
                                             </a>
+                                            {sec.blocks.length > 1 && (
+                                                <div className="mt-4">
+                                                    <BlockRenderer blocks={sec.blocks.slice(1)} />
+                                                </div>
+                                            )}
                                         </div>
 
-                                        {/* Cleaned up Hero Illustration - Flat, monochrome + primary */}
                                         <div className="shrink-0 w-full sm:w-56 h-36 bg-ez-ash border border-ez-border flex items-center justify-center overflow-hidden">
                                             <svg viewBox="0 0 160 100" className="w-full h-full p-4" fill="none">
                                                 <rect x="20" y="20" width="50" height="60" fill="var(--ez-color-primary)" opacity="0.1" />
@@ -312,19 +153,17 @@ export default function GuidesPage() {
                                                 <rect x="24" y="44" width="30" height="4" fill="var(--ez-color-primary)" opacity="0.4" />
                                                 <rect x="24" y="52" width="36" height="4" fill="var(--ez-color-primary)" opacity="0.4" />
                                                 <rect x="24" y="60" width="20" height="4" fill="var(--ez-color-primary)" opacity="0.4" />
-
                                                 <rect x="90" y="30" width="50" height="50" fill="var(--ez-color-carbon)" opacity="0.05" />
                                                 <rect x="96" y="36" width="38" height="6" fill="var(--ez-color-carbon)" opacity="0.3" />
                                                 <rect x="96" y="47" width="38" height="4" fill="var(--ez-color-carbon)" opacity="0.2" />
                                                 <rect x="96" y="55" width="26" height="4" fill="var(--ez-color-carbon)" opacity="0.2" />
-
                                                 <circle cx="125" cy="68" r="8" fill="var(--ez-color-primary)" />
                                                 <path d="M122 68l2 2 4-4" stroke="#ffffff" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
                                             </svg>
                                         </div>
                                     </div>
                                 ) : (
-                                    <p className="text-ez-base text-ez-body leading-normal">{sec.body}</p>
+                                    <BlockRenderer blocks={sec.blocks} />
                                 )}
                             </section>
                         ))}
@@ -355,4 +194,116 @@ export default function GuidesPage() {
             </div>
         </div>
     );
+}
+
+function BlockRenderer({ blocks }: { blocks: GuideBlock[] }) {
+    return (
+        <div className="space-y-4">
+            {blocks.map((block, i) => <Block key={i} block={block} />)}
+        </div>
+    );
+}
+
+function Block({ block }: { block: GuideBlock }) {
+    if (block.type === "paragraph") {
+        return <p className="text-ez-base text-ez-body leading-normal">{block.text}</p>;
+    }
+
+    if (block.type === "list") {
+        const Tag = block.ordered ? "ol" : "ul";
+        return (
+            <Tag className={`space-y-2 text-ez-base text-ez-body leading-normal pl-5 ${block.ordered ? "list-decimal" : "list-disc"}`}>
+                {block.items.map((item, j) => <li key={j}>{item}</li>)}
+            </Tag>
+        );
+    }
+
+    if (block.type === "callout") {
+        const styles = {
+            info: "bg-blue-50 border-blue-200 text-blue-800",
+            tip: "bg-green-50 border-green-200 text-green-800",
+            warning: "bg-amber-50 border-amber-200 text-amber-800",
+        };
+        const icons = { info: "ℹ", tip: "💡", warning: "⚠" };
+        return (
+            <aside className={`flex gap-3 border rounded px-4 py-3 text-ez-sm ${styles[block.variant]}`}>
+                <span className="shrink-0">{icons[block.variant]}</span>
+                <p>{block.text}</p>
+            </aside>
+        );
+    }
+
+    if (block.type === "steps") {
+        return (
+            <ol className="space-y-5">
+                {block.items.map((step, j) => (
+                    <li key={j} className="flex gap-4">
+                        <div className="shrink-0 w-7 h-7 rounded-full bg-ez-primary text-white flex items-center justify-center text-ez-sm font-medium">
+                            {j + 1}
+                        </div>
+                        <div>
+                            <p className="font-medium text-ez-heading text-ez-base">{step.title}</p>
+                            <p className="text-ez-body text-ez-sm mt-1">{step.body}</p>
+                        </div>
+                    </li>
+                ))}
+            </ol>
+        );
+    }
+
+    if (block.type === "link-card") {
+        return (
+            <a
+                href={block.href}
+                className="flex items-center justify-between px-4 py-3 border border-ez-border hover:border-ez-primary hover:bg-ez-ash rounded transition-colors duration-ez group"
+            >
+                <div>
+                    <p className="font-medium text-ez-heading text-ez-base group-hover:text-ez-primary">{block.label}</p>
+                    {block.description && (
+                        <p className="text-ez-sm text-ez-muted mt-0.5">{block.description}</p>
+                    )}
+                </div>
+                <svg className="w-4 h-4 text-ez-muted group-hover:text-ez-primary shrink-0 ml-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M14 5l7 7m0 0l-7 7m7-7H3" />
+                </svg>
+            </a>
+        );
+    }
+
+    if (block.type === "image") {
+        return (
+            <figure className="space-y-2">
+                <img src={block.src} alt={block.alt} className="w-full rounded border border-ez-border" />
+                {block.caption && (
+                    <figcaption className="text-ez-sm text-ez-muted text-center">{block.caption}</figcaption>
+                )}
+            </figure>
+        );
+    }
+
+    if (block.type === "video") {
+        const isYouTube = block.src.includes("youtube.com") || block.src.includes("youtu.be");
+        if (isYouTube) {
+            const videoId = block.src.includes("youtu.be")
+                ? block.src.split("youtu.be/")[1].split(/[?#]/)[0]
+                : (() => { try { return new URL(block.src).searchParams.get("v") ?? ""; } catch { return ""; } })();
+            return (
+                <div className="aspect-video w-full">
+                    <iframe
+                        src={`https://www.youtube.com/embed/${videoId}`}
+                        title={block.title ?? "Video"}
+                        className="w-full h-full rounded border border-ez-border"
+                        allowFullScreen
+                    />
+                </div>
+            );
+        }
+        return (
+            <video controls className="w-full rounded border border-ez-border">
+                <source src={block.src} />
+            </video>
+        );
+    }
+
+    return null;
 }
