@@ -16,10 +16,11 @@ export const metadata: Metadata = {
   metadataBase: new URL("https://kubee.in"),
 
   icons: {
-    icon: [
-      { url: "/favicon.ico?v=2", sizes: "any" },
+  icon: [
+    { url: "/favicon.png", type: "image/png", sizes: "32x32" },
     ],
-    shortcut: "/favicon.ico?v=2",
+    shortcut: "/favicon.png",
+    apple: "/favicon.png",
   },
 
   openGraph: {
