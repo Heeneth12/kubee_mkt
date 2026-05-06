@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import { guides, type GuideBlock } from "@/data/guides";
+import { guides, type GuideBlock, type GuideEntry } from "@/data/guides";
 
 const sidebarSections = [
     {
@@ -29,13 +29,14 @@ const sidebarSections = [
     },
 ];
 
-const guideMap = Object.fromEntries(guides.map((g) => [g.key, g]));
+const guideMap: Record<string, GuideEntry | undefined> = Object.fromEntries(guides.map((g) => [g.key, g]));
 
 export default function GuidesPage() {
     const [activeItem, setActiveItem] = useState<string>("Overview");
     const [expandedGroups, setExpandedGroups] = useState<Record<string, boolean>>({ Inventory: true });
 
     const content = guideMap[activeItem] ?? guideMap["Overview"];
+    if (!content) return null;
 
     function toggleGroup(label: string) {
         setExpandedGroups((prev) => ({ ...prev, [label]: !prev[label] }));
@@ -138,11 +139,14 @@ export default function GuidesPage() {
                                                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M14 5l7 7m0 0l-7 7m7-7H3" />
                                                 </svg>
                                             </a>
-                                            {sec.blocks.length > 1 && (
-                                                <div className="mt-4">
-                                                    <BlockRenderer blocks={sec.blocks.slice(1)} />
-                                                </div>
-                                            )}
+                                            {(() => {
+                                                const rest = sec.blocks[0]?.type === "paragraph" ? sec.blocks.slice(1) : sec.blocks;
+                                                return rest.length > 0 ? (
+                                                    <div className="mt-4">
+                                                        <BlockRenderer blocks={rest} />
+                                                    </div>
+                                                ) : null;
+                                            })()}
                                         </div>
 
                                         <div className="shrink-0 w-full sm:w-56 h-36 bg-ez-ash border border-ez-border flex items-center justify-center overflow-hidden">
