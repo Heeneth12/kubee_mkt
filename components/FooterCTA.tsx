@@ -1,141 +1,51 @@
-"use client";
-
-import { useState } from "react";
-import { AnimatePresence, motion } from "framer-motion";
-
-const TESTIMONIALS = [
-  {
-    id: 1,
-    quote: "Kubee lets us easily monitor our increasingly complex inventory. From purchase orders and stock inaccuracy to vendor payments and QA, Kubee keeps our team alert to what's important, at all times.",
-    author: "Bowie Cheung",
-    role: "Co-Founder & CEO",
-    company: "Pepper",
-  },
-  {
-    id: 2,
-    quote: "Since implementing Kubee, our stockout incidents dropped by 40%. The ability to catch reorder points before they become critical has been a game-changer for our operations team.",
-    author: "Sarah Jenkins",
-    role: "VP of Operations",
-    company: "Acme Corp",
-  },
-  {
-    id: 3,
-    quote: "The AI-powered forecasting and automated reordering mean we no longer have to guess stock levels. Kubee gives us peace of mind knowing our supply chain is always running smoothly.",
-    author: "David Chen",
-    role: "Inventory Lead",
-    company: "Nexus",
-  },
-];
+import { ArrowRight, Check } from 'lucide-react';
 
 export default function FooterCTA() {
-  const [currentIndex, setCurrentIndex] = useState(0);
-
-  const handleNext = () => setCurrentIndex((prev) => (prev + 1) % TESTIMONIALS.length);
-  const handlePrev = () => setCurrentIndex((prev) => (prev - 1 + TESTIMONIALS.length) % TESTIMONIALS.length);
-
-  const progressPct = ((currentIndex + 1) / TESTIMONIALS.length) * 100;
-
   return (
-    <section className="bg-ez-carbon py-20 md:py-28 overflow-hidden">
-      <div className="max-w-4xl mx-auto px-6">
+    <section className="font-sans ">
+      <div className="max-w-345 mx-auto px-6 lg:px-12">
 
-        {/* Eyebrow */}
-        <p className="ez-micro-label text-white/40 text-center mb-4">What people say</p>
+        {/* Main CTA Box */}
+        <div className="p-6 md:p-16 flex flex-col items-center text-center relative overflow-hidden relative group">
+          {/* Heading */}
+          <h2 className="text-[40px] md:text-[56px] font-medium text-ez-heading leading-[1.1] tracking-tight mb-6">
+            Take absolute control of your inventory today.
+          </h2>
 
-        {/* Heading */}
-        <h2
-          className="font-medium text-white text-center mb-16 leading-tight"
-          style={{ fontSize: "32px", lineHeight: "1.2" }}
-        >
-          Trusted by teams across India
-        </h2>
-
-        {/* Testimonial card */}
-        <div className="relative max-w-3xl mx-auto">
-          <div className="bg-white p-10 md:p-14 min-h-[240px] flex flex-col justify-center">
-            <AnimatePresence mode="wait">
-              <motion.div
-                key={currentIndex}
-                initial={{ opacity: 0, x: 16 }}
-                animate={{ opacity: 1, x: 0 }}
-                exit={{ opacity: 0, x: -16 }}
-                transition={{ duration: 0.33, ease: [0.5, 0, 0, 0.75] }}
-                className="flex flex-col h-full justify-between gap-8"
-              >
-                <p className="text-ez-md text-ez-body leading-relaxed">
-                  &ldquo;{TESTIMONIALS[currentIndex].quote}&rdquo;
-                </p>
-                <div className="flex items-end justify-between pt-4 border-t border-ez-border">
-                  <div>
-                    <h4 className="font-medium text-ez-base text-ez-heading mb-0.5">
-                      {TESTIMONIALS[currentIndex].author}
-                    </h4>
-                    <p className="text-ez-xs text-ez-secondary">
-                      {TESTIMONIALS[currentIndex].role}
-                    </p>
-                  </div>
-                  <span className="font-medium text-ez-lg text-ez-heading">
-                    {TESTIMONIALS[currentIndex].company}
-                  </span>
-                </div>
-              </motion.div>
-            </AnimatePresence>
-          </div>
-        </div>
-
-        {/* Controls */}
-        <div className="flex items-center justify-center gap-6 mt-8 max-w-[400px] mx-auto">
-          <button
-            onClick={handlePrev}
-            className="text-white/40 hover:text-white transition-colors duration-ez p-2"
-            aria-label="Previous testimonial"
-          >
-            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
-              <line x1="19" y1="12" x2="5" y2="12" />
-              <polyline points="12 19 5 12 12 5" />
-            </svg>
-          </button>
-
-          <div className="flex-1 h-px bg-white/10 relative overflow-hidden">
-            <motion.div
-              className="absolute left-0 top-0 bottom-0 bg-white"
-              initial={{ width: 0 }}
-              animate={{ width: `${progressPct}%` }}
-              transition={{ duration: 0.33, ease: [0.5, 0, 0, 0.75] }}
-            />
-          </div>
-
-          <button
-            onClick={handleNext}
-            className="text-white/40 hover:text-white transition-colors duration-ez p-2"
-            aria-label="Next testimonial"
-          >
-            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
-              <line x1="5" y1="12" x2="19" y2="12" />
-              <polyline points="12 5 19 12 12 19" />
-            </svg>
-          </button>
-        </div>
-
-        {/* CTA */}
-        <div className="mt-16 text-center">
-          <h3 className="font-medium text-white mb-3" style={{ fontSize: "28px", lineHeight: "1.2" }}>
-            Ready to take control of your inventory?
-          </h3>
-          <p className="text-ez-md text-white/50 mb-8 max-w-md mx-auto leading-relaxed">
-            Join thousands of Indian businesses already running smarter operations with Kubee.
+          {/* Subtext */}
+          <p className="text-ez-base text-ez-secondary leading-relaxed max-w-2xl mx-auto mb-10">
+            Join thousands of small and medium businesses. Streamline your inventory and connect your entire distribution network on one unified ledger.
           </p>
-          <div className="flex items-center justify-center gap-3">
-            <button className="ez-btn ez-btn-primary">Start Free Trial →</button>
-            <button
-              className="ez-btn border border-white/20 text-white/70 hover:border-white/40 hover:text-white transition-[border-color,color] duration-ez"
-              style={{ background: "transparent" }}
-            >
-              Talk to Sales
-            </button>
-          </div>
-        </div>
 
+          {/* Action Buttons */}
+          <div className="flex flex-col sm:flex-row items-center gap-4 w-full sm:w-auto mb-10">
+            <a href="#start-trial" className="ez-btn ez-btn-primary w-full sm:w-auto h-12 px-8 flex items-center justify-center gap-2 group/btn font-medium">
+              Start your free trial
+              <ArrowRight className="w-4 h-4 group-hover/btn:translate-x-1 transition-transform duration-ez" />
+            </a>
+
+            <a href="#book-demo" className="bg-ez-ash w-full sm:w-auto h-12 px-8 flex items-center justify-center border border-ez-border bg-transparent text-ez-heading font-medium hover:bg-ez-ash hover:border-ez-primary transition-all duration-ez">
+              Book a Demo
+            </a>
+          </div>
+
+          {/* Trust Indicators / Micro-copy */}
+          <div className="flex flex-wrap justify-center items-center gap-x-8 gap-y-3 text-ez-sm text-ez-secondary font-medium">
+            <div className="flex items-center gap-2">
+              <Check className="w-4 h-4 text-ez-primary" />
+              <span>14-day free trial</span>
+            </div>
+            <div className="flex items-center gap-2">
+              <Check className="w-4 h-4 text-ez-primary" />
+              <span>No credit card required</span>
+            </div>
+            <div className="flex items-center gap-2">
+              <Check className="w-4 h-4 text-ez-primary" />
+              <span>Cancel anytime</span>
+            </div>
+          </div>
+
+        </div>
       </div>
     </section>
   );

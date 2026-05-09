@@ -1,8 +1,9 @@
 import type { Metadata } from "next";
 import HeroSection from "@/components/HeroSection";
-import FeaturesAlternating from "@/components/FeaturesAlternating";
 import FooterCTA from "@/components/FooterCTA";
 import Integrations from "@/components/Integrations";
+import FeaturesAlternating from "@/components/FeaturesAlternating";
+import IndustryShowcase from "@/components/IndustryShowcase";
 
 export const metadata: Metadata = {
   title: "Kubee — Inventory Management for Indian Businesses",
@@ -14,8 +15,9 @@ export default function HomePage() {
   return (
     <>
       <HeroSection />
-      <Integrations />
       <FeaturesAlternating />
+      <IndustryShowcase />
+      <Integrations />
       <FooterCTA />
     </>
   );
