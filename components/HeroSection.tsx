@@ -91,15 +91,15 @@ export default function HeroSection() {
         </p>
 
         {/* Responsive Buttons: Stack on very small screens, row on others */}
-        <div className="flex flex-col sm:flex-row items-center justify-center gap-3">
+        <div className="flex lex-row items-center justify-center gap-3">
           <button
-            className="ez-btn ez-btn-primary w-full sm:w-auto"
+            className="ez-btn ez-btn-primary"
             onClick={() => handleOpenApp("demo")}
           >
             Get Started Free →
           </button>
           <button
-            className="ez-btn ez-surface border border-ez-ash w-full sm:w-auto"
+            className="ez-btn ez-surface border border-ez-ash"
             onClick={() => handleOpenApp("contact")}
           >
             Book a Demo
