@@ -2,9 +2,8 @@
 import { MarketingRequestDto } from "../types/support";
 
 class CommonService {
-    private static BASE_URL = process.env.NEXT_PUBLIC_AUTH_API || '';
-    private static USER_REQUEST_BASE_URL = `${CommonService.BASE_URL}/api/v1/userrequests`;
 
+    private static USER_REQUEST_BASE_URL = process.env.NEXT_PUBLIC_AUTH_API + `/api/v1/userrequests`;
 
     async createRequest(type: 'app' | 'mkt', payload: MarketingRequestDto) {
         const url = `${CommonService.USER_REQUEST_BASE_URL}/${type}`;
