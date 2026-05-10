@@ -1,8 +1,9 @@
 "use client";
 
-import { useEffect } from "react";
 import Image from "next/image";
 import dashBoard from "@/assets/images/dashboard.png";
+import { openApp } from "./utils/openApp";
+import { useServiceWarmup } from "./utils/useServiceWarmup";
 
 
 
@@ -57,17 +58,7 @@ function DashboardMockup() {
 
 export default function HeroSection() {
 
-  const handleOpenApp = (type: string) => {
-    const baseUrl = "https://app.kubee.in/auth/login";
-    const url = type === "contact" ? `${baseUrl}?booking=true` : baseUrl;
-    window.open(url, "_blank");
-  };
-
-  useEffect(() => {
-    // Note: Consider moving these to a global provider if you have multiple pages
-    fetch("https://ezauth-c4w0.onrender.com/actuator/health").catch(console.error);
-    fetch("https://ez-inventory.onrender.com/actuator/health").catch(console.error);
-  }, []);
+  useServiceWarmup();
 
   return (
     <section
@@ -94,13 +85,13 @@ export default function HeroSection() {
         <div className="flex lex-row items-center justify-center gap-3">
           <button
             className="ez-btn ez-btn-primary"
-            onClick={() => handleOpenApp("demo")}
+            onClick={() => openApp("demo")}
           >
             Get Started Free →
           </button>
           <button
             className="ez-btn ez-surface border border-ez-ash"
-            onClick={() => handleOpenApp("contact")}
+            onClick={() => openApp("contact")}
           >
             Book a Demo
           </button>

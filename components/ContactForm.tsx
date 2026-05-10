@@ -2,6 +2,8 @@
 
 import { useState } from "react";
 import Link from "next/link";
+import { commonService } from "./service/CommonService";
+import { MarketingRequestDto, SupportCategory, SupportPriority } from "./types/support";
 
 type CardType = "help" | "trial" | "sales" | "faq" | "press" | null;
 
@@ -100,18 +102,45 @@ export default function ContactPage() {
   });
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitted, setSubmitted] = useState(false);
+  const [submitError, setSubmitError] = useState<string | null>(null);
 
   const handleCardClick = (id: CardType) => {
     setActiveCard((prev) => (prev === id ? null : id));
     setSubmitted(false);
+    setSubmitError(null);
+  };
+
+  const CARD_SUBJECTS: Record<NonNullable<CardType>, string> = {
+    help: "Get help",
+    trial: "Try it free",
+    sales: "Contact Sales",
+    faq: "Have a question?",
+    press: "Press & Media",
   };
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setIsSubmitting(true);
-    await new Promise((resolve) => setTimeout(resolve, 1500));
-    setIsSubmitting(false);
-    setSubmitted(true);
+    setSubmitError(null);
+    try {
+      const payload: MarketingRequestDto = {
+        contactEmail: form.email,
+        contactName: `${form.firstName} ${form.lastName}`.trim(),
+        subject: activeCard ? CARD_SUBJECTS[activeCard] : "Contact Request",
+        description: form.message,
+        category: activeCard === "sales" ? SupportCategory.SALES_CONTACT : SupportCategory.GENERAL_INQUIRY,
+        priority: SupportPriority.MEDIUM,
+        sourceUrl: typeof window !== "undefined" ? window.location.href : null,
+        sourceName: activeCard ? CARD_SUBJECTS[activeCard] : null,
+        metadata: { phone: form.phone, countryCode: form.countryCode },
+      };
+      await commonService.createRequest("mkt", payload);
+      setSubmitted(true);
+    } catch (err) {
+      setSubmitError(err instanceof Error ? err.message : "Failed to send message. Please try again.");
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   const topCards = CARDS.slice(0, 2);
@@ -348,6 +377,11 @@ export default function ContactPage() {
                       .
                     </label>
                   </div>
+
+                  {/* Submit error */}
+                  {submitError && (
+                    <p className="text-ez-sm text-red-500">{submitError}</p>
+                  )}
 
                   {/* Submit */}
                   <button

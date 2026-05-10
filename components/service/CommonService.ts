@@ -2,7 +2,7 @@
 import { MarketingRequestDto } from "../types/support";
 
 class CommonService {
-    private static BASE_URL = process.env.NEXT_PUBLIC_API_URL || '';
+    private static BASE_URL = process.env.NEXT_PUBLIC_MKT_API || '';
     private static USER_REQUEST_BASE_URL = `${CommonService.BASE_URL}/api/v1/userrequests`;
 
 

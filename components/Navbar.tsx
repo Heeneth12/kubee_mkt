@@ -3,6 +3,7 @@
 import Link from "next/link";
 import { useState, useRef, useEffect } from "react";
 import { usePathname, useRouter } from "next/navigation";
+import { openApp } from "./utils/openApp";
 import Image from "next/image";
 import logo from "@/assets/images/Kubee_logo.png";
 
@@ -105,14 +106,6 @@ export default function Navbar() {
   const router = useRouter();
   const dropdownRef = useRef<HTMLDivElement>(null);
 
-  const handleOpenApp = (type: string) => {
-    if (type === "demo") {
-      window.open("https://app.kubee.in/auth/login?demo=true", "_blank");
-    }
-    if (type === "login") {
-      window.open("https://app.kubee.in/auth/login", "_blank");
-    }
-  };
 
   useEffect(() => {
     function handle(e: MouseEvent) {
@@ -312,10 +305,10 @@ export default function Navbar() {
 
           {/* Desktop CTA */}
           <div className="hidden md:flex items-center justify-center gap-3">
-            <button onClick={() => handleOpenApp("login")} className="ez-btn ez-btn-primary">
+            <button onClick={() => openApp("login")} className="ez-btn ez-btn-primary">
               Sign In
             </button>
-            <button onClick={() => handleOpenApp("demo")} className="ez-btn ez-surface border border-ez-ash">
+            <button onClick={() => openApp("demo")} className="ez-btn ez-surface border border-ez-ash">
               See How It Works
             </button>
           </div>
@@ -394,13 +387,13 @@ export default function Navbar() {
 
           <div className="flex flex-col gap-3 mt-6">
             <button
-              onClick={() => { handleOpenApp("login") }}
+              onClick={() => { openApp("login") }}
               className="ez-btn ez-btn-primary w-full"
             >
               Get Started Free &rarr;
             </button>
             <button
-              onClick={() => { handleOpenApp("demo"); }}
+              onClick={() => { openApp("demo"); }}
               className="ez-btn ez-surface border border-ez-ash w-full"
             >
               See How It Works
