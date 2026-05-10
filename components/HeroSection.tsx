@@ -89,13 +89,13 @@ export default function HeroSection() {
             Built to scale your operations effortlessly.
           </p>
 
-          <div className="flex flex-col sm:flex-row items-center justify-center gap-3">
+          <div className="flex items-center justify-center gap-3">
             <Link
               href={`${process.env.NEXT_PUBLIC_KUBEE_APP_URL}/auth/login`}
               target='_blank'
               rel="noopener noreferrer"
               aria-label="Get started with Kubee for free"
-              className="ez-btn ez-btn-primary w-full sm:w-auto h-10 px-8 flex items-center justify-center gap-2 group/btn font-medium"
+              className="ez-btn ez-btn-primary h-10 px-8 flex items-center justify-center gap-2 group/btn font-medium"
             >
               Get Started Free
               <ArrowRight className="w-4 h-4 group-hover/btn:translate-x-1 transition-transform duration-ez" aria-hidden="true" />
@@ -106,7 +106,7 @@ export default function HeroSection() {
               target='_blank'
               rel="noopener noreferrer"
               aria-label="Book a demo of Kubee inventory software"
-              className="ez-btn ez-surface border border-ez-ash w-full sm:w-auto h-10 px-8 flex items-center justify-center gap-2 group/btn font-medium"
+              className="ez-btn ez-surface border border-ez-ash h-10 px-8 flex items-center justify-center gap-2 group/btn font-medium"
             >
               Book a Demo
             </Link>
