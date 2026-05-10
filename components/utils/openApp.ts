@@ -7,12 +7,12 @@ const ROUTE_PARAMS: Record<AppRoute, string> = {
 };
 
 export function openApp(type: AppRoute = "login") {
-  const base = process.env.NEXT_PUBLIC_KUBEE_APP_URL + "/login";
+  const base = process.env.NEXT_PUBLIC_KUBEE_APP_URL + "/auth/login";
   window.open(`${base}${ROUTE_PARAMS[type]}`, "_blank");
 }
 
 export function openRegister() {
-  const base = process.env.NEXT_PUBLIC_KUBEE_APP_URL + "/register";
+  const base = process.env.NEXT_PUBLIC_KUBEE_APP_URL + "/auth/register";
   window.open(base, "_blank");
 }
 
